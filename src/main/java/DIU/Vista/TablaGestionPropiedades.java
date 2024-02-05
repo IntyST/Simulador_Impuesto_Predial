@@ -8,12 +8,12 @@ package DIU.Vista;
  *
  * @author Usuario
  */
-public class Propietario extends javax.swing.JInternalFrame {
+public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form TablaPantallaPricipal
+     * Creates new form TablaGestionPropiedades
      */
-    public Propietario() {
+    public TablaGestionPropiedades() {
         initComponents();
     }
 
