@@ -8,6 +8,11 @@ package DIU.Modelo;
  *
  * @author Usuario
  */
-public class Propietario {
-    
+public class AdministradorModelo {
+    private int id_administrador;
+    private String nombres;
+    private String apellidos;
+    private int cedula;
+    private String usuario;
+    private String clave;
 }
