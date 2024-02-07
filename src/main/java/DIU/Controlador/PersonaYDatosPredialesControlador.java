@@ -43,8 +43,8 @@ public class PersonaYDatosPredialesControlador {
     //CREAR 
     public void crearPersona(PersonaYDatosPredialesModelo p) {
         try {
-            String sql = "call sp_InsertarPersonaYDatosPrediales('" + p.getNombres() + "','" + p.getApellidos()
-                    + "','" + p.getCedula() + "','" + p.getCorreo() + "','" + p.getTelefono()
+            String sql = "call sp_InsertarPersonaYDatosPrediales('" + p.getCedula() + "','" + p.getNombres()
+                    + "','" + p.getApellidos() + "','" + p.getCorreo() + "','" + p.getTelefono()
                     + "','" + p.getEdad() + "','" + p.getCodCastralPred() + "','" + p.getTipoPred()
                     + "','" + p.getDireccionPropie() + "','" + p.getAreaTotalPred() + "','" + p.getAreaConstruccionPred()
                     + "','" + p.getValorTerrenoPred() + "','" + p.getValorEdificacionPred() + "','" + p.getValorComercialPred() + "');";
@@ -55,15 +55,113 @@ public class PersonaYDatosPredialesControlador {
 
             if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Datos de persona y prediales creados con éxito");
-                System.out.println("DATOS DE PERSONA Y PREDIALES CREADOS CON ÉXITO");
             } else {
                 JOptionPane.showMessageDialog(null, "Error al crear los datos");
-                System.out.println("ERROR AL CREAR LOS DATOS");
             }
             ejecutar.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en la conexión a la base de datos");
-            System.out.println("ERROR EN LA CONEXIÓN A LA BASE DE DATOS: " + e.getMessage());
+        }
+    }
+
+    //CONSULTA DE TODA LA TABLA
+    public ArrayList<Object[]> datosPersonasYPrediales() {
+        ArrayList<Object[]> listaTotalRegistros = new ArrayList<>();
+        try {
+            String SQL = "call sp_Lista_Personas_Datos_Prediales()";
+            ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
+            //excuteQuery cuando consulto la bdd
+            //Recibo un result set cuando consulto
+            ResultSet res = ejecutar.executeQuery();
+            int cont = 1;
+            while (res.next()) {
+                Object[] fila = new Object[15];
+                for (int i = 0; i < 15; i++) {
+                    fila[i] = res.getObject(i + 1);
+                }
+                fila[0] = cont;
+                listaTotalRegistros.add(fila);
+                cont++;
+            }
+            ejecutar.close();
+            return listaTotalRegistros;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
+        }
+
+        return null;
+    }
+
+    public ArrayList<Object[]> buscarPersonaYDatosPrediales(String cedula) {
+        ArrayList<Object[]> listaTotalRegistros = new ArrayList<>();
+        try {
+            String SQL = "CALL sp_BuscarPersonaYDatosPrediales(?)";
+            ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
+            ejecutar.setString(1, cedula);
+            ResultSet res = ejecutar.executeQuery();
+            int cont = 1;
+            while (res.next()) {
+                Object[] fila = new Object[17]; // Ajusta el tamaño del arreglo para incluir todas las columnas
+                for (int i = 0; i < 17; i++) { // Ajusta el límite del bucle para coincidir con el número de columnas
+                    fila[i] = res.getObject(i + 1);
+                }
+                fila[0] = cont;
+                listaTotalRegistros.add(fila);
+                cont++;
+            }
+            ejecutar.close();
+            return listaTotalRegistros;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
+        }
+        return null;
+    }
+    public void actualizarPersonaYDatosPrediales(PersonaYDatosPredialesModelo p){
+        try {
+            String sql = "call sp_ActualizarPersonaYDatosPrediales('" + p.getCedula() + "','" + p.getNombres()
+                    + "','" + p.getApellidos() + "','" + p.getCorreo() + "','" + p.getTelefono()
+                    + "','" + p.getEdad() + "','" + p.getCodCastralPred() + "','" + p.getTipoPred()
+                    + "','" + p.getDireccionPropie() + "','" + p.getAreaTotalPred() + "','" + p.getAreaConstruccionPred()
+                    + "','" + p.getValorTerrenoPred() + "','" + p.getValorEdificacionPred() + "','" + p.getValorComercialPred() + "');";
+
+            ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+            int res=ejecutar.executeUpdate();
+            if(res>0){
+                JOptionPane.showMessageDialog
+        (null, "Persona actualizada con éxito");
+                System.out.println("PERSONA CREADA CON ÉXITO");
+                ejecutar.close();
+            }else{
+                JOptionPane.showMessageDialog
+        (null, "Revisar los datos ingresados al momento de querer actualizar");
+                System.out.println("REVISAR LA INFORMACIÓN INGRESADA");
+            }
+            } catch (SQLException e) {
+                System.out.println("COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
+        }
+    }
+    
+    
+    public void eliminarPersonaYDatosPrediales(String cedula){
+        try {
+            
+            String sql = "call sp_EliminarPersonaYDatosPrediales('"+cedula+"');";
+            ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+            //executeUpdate cuando escribo la bdd
+            //int res cuando escribo
+            int res=ejecutar.executeUpdate();
+            if(res>0){
+                JOptionPane.showMessageDialog
+        (null, "Persona eliminada con éxito");
+                System.out.println("PERSONA CREADA CON ÉXITO");
+                ejecutar.close();
+            }else{
+                JOptionPane.showMessageDialog
+        (null, "Revisar los datos ingresados al momento de querer eliminar");
+                System.out.println("REVISAR LA INFORMACIÓN INGRESADA");
+            }
+            } catch (SQLException e) {
+                System.out.println("COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
         }
     }
 }

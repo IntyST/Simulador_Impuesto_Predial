@@ -94,9 +94,9 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
         lblAreaConstruccion = new javax.swing.JLabel();
         txtAreaConstruccion = new javax.swing.JTextField();
         Guardar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         lblCodCastral = new javax.swing.JLabel();
         lblValorTerreno = new javax.swing.JLabel();
         txtValorTerreno = new javax.swing.JTextField();
@@ -115,6 +115,28 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Gestión de propiedades");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese los siguietes campos del propietario y datos predios"));
 
@@ -153,11 +175,26 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Eliminar");
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Actualizar");
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Limpiar");
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         lblCodCastral.setText("Codigo castral:");
 
@@ -239,17 +276,17 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtValorTerreno, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(196, 196, 196)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblValorComercial)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtValorComercial, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(365, 365, 365)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -286,7 +323,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                                             .addComponent(rbtnRural))
                                         .addGap(17, 17, 17)))))
                         .addGap(8, 8, 8)
-                        .addComponent(jButton3)
+                        .addComponent(btnActualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +333,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
+                                    .addComponent(btnEliminar)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(lblNombres)
                                         .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -323,7 +360,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                             .addComponent(txtAreaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(btnLimpiar)
                         .addGap(2, 2, 2)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEdad)
@@ -348,11 +385,21 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPropiedadPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPropiedadProMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPropiedadPro);
 
         lblBuscar.setText("Buscar por número de cédula:");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Volver");
 
@@ -375,7 +422,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                 .addGap(353, 353, 353)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addComponent(btnBuscar)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -421,7 +468,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                 0, // ID autogenerado en la base de datos
                 txtNombres.getText(),
                 txtApellidos.getText(),
-                Integer.parseInt(txtCedula.getText()),
+                txtCedula.getText(),
                 txtCorreo.getText(),
                 txtTelefono.getText(),
                 Integer.parseInt(txtEdad.getText()),
@@ -437,22 +484,156 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                 Double.parseDouble(txtValorComercial.getText())
         );
 
-      
         PersonaYDatosPredialesControlador pC = new PersonaYDatosPredialesControlador();
         pC.crearPersona(pM);
         listaPersonayDatosPredialesModelo.add(pM);
         setDatos();
+        limpiarTabla();
+        cargarTabla();
 
-        // Limpiar los campos de entrada después de guardar los datos
-        limpiarCampos();
-        
 
     }//GEN-LAST:event_GuardarActionPerformed
 
-   
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        cargarTabla();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtCedula.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        txtEdad.setText("");
+        txtCodCastral.setText("");
+        txtDireccion.setText("");
+        txtAreaTotal.setText("");
+        txtAreaConstruccion.setText("");
+        txtValorTerreno.setText("");
+        txtValorEdificacion.setText("");
+        txtValorComercial.setText("");
+
+        // Limpia la selección de los botones de radio
+        rbtnRural.setSelected(false);
+        rbtnUrbano.setSelected(false);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String cedula = txtBuscar.getText(); // Obtener la cédula desde el campo de texto
+        PersonaYDatosPredialesControlador controlador = new PersonaYDatosPredialesControlador();
+        ArrayList<Object[]> listaFilas = controlador.buscarPersonaYDatosPrediales(cedula);
+
+        if (listaFilas != null) {
+            limpiarTabla(); // Limpiar la tabla antes de mostrar nuevos resultados
+
+            // Añadir las filas obtenidas a la tabla
+            for (Object[] fila : listaFilas) {
+                modelo.addRow(fila);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron resultados para la cédula proporcionada.");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        cargarTabla();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void tblPropiedadProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPropiedadProMouseClicked
+        DefaultTableModel dtm = (DefaultTableModel) tblPropiedadPro.getModel();
+        int filaSeleccionada = tblPropiedadPro.getSelectedRow();
+        if (filaSeleccionada != -1) { // Verifica si se ha seleccionado una fila válida
+            // Obtener los datos de la fila seleccionada y establecerlos en los campos correspondientes
+            txtCedula.setText((String) dtm.getValueAt(filaSeleccionada, 1));
+            txtNombres.setText((String) dtm.getValueAt(filaSeleccionada, 2));
+            txtApellidos.setText((String) dtm.getValueAt(filaSeleccionada, 3));
+            txtCorreo.setText((String) dtm.getValueAt(filaSeleccionada, 4));
+            txtTelefono.setText((String) dtm.getValueAt(filaSeleccionada, 5));
+            txtEdad.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 6)));
+            txtCodCastral.setText((String) dtm.getValueAt(filaSeleccionada, 7));
+            txtDireccion.setText((String) dtm.getValueAt(filaSeleccionada, 8));
+            txtAreaTotal.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 9)));
+            txtAreaConstruccion.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 10)));
+            txtValorTerreno.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 11)));
+            txtValorEdificacion.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 12)));
+            txtValorComercial.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 13)));
+
+            // Establecer la selección de los botones de radio según el tipo de propiedad
+            String tipoPropiedad = ((String) dtm.getValueAt(filaSeleccionada, 8)).trim(); // Obtener el tipo de propiedad de la fila seleccionada
+            System.out.println("Tipo de propiedad obtenido de la fila: " + tipoPropiedad);
+            if (tipoPropiedad.equalsIgnoreCase("Rural")) {
+                System.out.println("Seleccionando Rural");
+                rbtnRural.setSelected(true);
+                rbtnUrbano.setSelected(false);
+            } else if (tipoPropiedad.equalsIgnoreCase("Urbano")) {
+                System.out.println("Seleccionando Urbano");
+                rbtnRural.setSelected(false);
+                rbtnUrbano.setSelected(true);
+            } else {
+                System.out.println("Tipo de propiedad no reconocido: " + tipoPropiedad);
+            }
+        }
+    }//GEN-LAST:event_tblPropiedadProMouseClicked
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        PersonaYDatosPredialesModelo pM = new PersonaYDatosPredialesModelo(
+                0, // ID autogenerado en la base de datos
+                txtNombres.getText(),
+                txtApellidos.getText(),
+                txtCedula.getText(),
+                txtCorreo.getText(),
+                txtTelefono.getText(),
+                Integer.parseInt(txtEdad.getText()),
+                0, // ID_PRED inicializado en 0, puede ser autogenerado
+                0, // ID_PERSONA_PER inicializado en 0, puede ser autogenerado
+                txtCodCastral.getText(),
+                (rbtnRural.isSelected() ? "Rural" : (rbtnUrbano.isSelected() ? "Urbano" : "")), // Usar el tipo de propiedad obtenido de los botones de radio
+                txtDireccion.getText(),
+                Double.parseDouble(txtAreaTotal.getText()),
+                Double.parseDouble(txtAreaConstruccion.getText()),
+                Double.parseDouble(txtValorTerreno.getText()),
+                Double.parseDouble(txtValorEdificacion.getText()),
+                Double.parseDouble(txtValorComercial.getText())
+        );
+        PersonaYDatosPredialesControlador pC = new PersonaYDatosPredialesControlador();
+        pC.actualizarPersonaYDatosPrediales(pM);
+        limpiarTabla();
+        cargarTabla();
 
 
-    private void limpiarCampos() {
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String cedula = txtCedula.getText(); // Obtener la cédula desde el campo de texto
+        PersonaYDatosPredialesControlador pC = new PersonaYDatosPredialesControlador();
+        pC.eliminarPersonaYDatosPrediales(cedula);
+        limpiarTabla();
+        cargarTabla();
+        limpiarEntradas();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void limpiarTabla() {
+        int a = modelo.getRowCount() - 1;  //Índices van de 0 a n-1
+        //System.out.println("Tabla "+a);   //Para mostrar por consola el resultado
+        for (int i = a; i >= 0; i--) {
+
+            //System.out.println("i "+i);    //Para mostrar por consola el resultado
+            modelo.removeRow(i);
+        }
+    }
+
+    private void cargarTabla() {
+        PersonaYDatosPredialesControlador pC = new PersonaYDatosPredialesControlador();
+        ArrayList<Object[]> lista = pC.datosPersonasYPrediales();
+        for (Object[] filas : lista) {
+            modelo.addRow(filas);
+        }
+
+        tblPropiedadPro.setModel(modelo);
+
+    }
+
+    public void limpiarEntradas() {
         txtCedula.setText("");
         txtNombres.setText("");
         txtApellidos.setText("");
@@ -474,11 +655,11 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidos;

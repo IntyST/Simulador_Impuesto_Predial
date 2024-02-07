@@ -12,7 +12,7 @@ public class PersonaYDatosPredialesModelo {
     private int idpersona;
     private String nombres;
     private String apellidos;
-    private int cedula;
+    private String cedula;
     private String correo;
     private String telefono;
     private int edad;
@@ -30,7 +30,7 @@ public class PersonaYDatosPredialesModelo {
     public PersonaYDatosPredialesModelo() {
     }
 
-    public PersonaYDatosPredialesModelo(int idpersona, String nombres, String apellidos, int cedula, String correo, String telefono, int edad, int idPred, int idPersonaPer, String codCastralPred, String tipoPred, String direccionPropie, double areaTotalPred, double areaConstruccionPred, double valorTerrenoPred, double valorEdificacionPred, double valorComercialPred) {
+    public PersonaYDatosPredialesModelo(int idpersona, String nombres, String apellidos, String cedula, String correo, String telefono, int edad, int idPred, int idPersonaPer, String codCastralPred, String tipoPred, String direccionPropie, double areaTotalPred, double areaConstruccionPred, double valorTerrenoPred, double valorEdificacionPred, double valorComercialPred) {
         this.idpersona = idpersona;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -74,11 +74,11 @@ public class PersonaYDatosPredialesModelo {
         this.apellidos = apellidos;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
