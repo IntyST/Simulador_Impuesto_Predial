@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package DIU.Vista;
-
 /**
  *
  * @author Usuario
@@ -17,6 +16,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,25 +26,156 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        escritorio = new javax.swing.JDesktopPane();
+        capa5 = new javax.swing.JPanel();
+        pnlAdmin3 = new javax.swing.JPanel();
+        lblAdmin3 = new javax.swing.JLabel();
+        pnlConsulta = new javax.swing.JPanel();
+        lblConsulta = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblGADM = new javax.swing.JLabel();
+        lblImpuestoPredial = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        capa5.setBackground(new java.awt.Color(0, 204, 204));
+
+        pnlAdmin3.setBackground(new java.awt.Color(0, 102, 102));
+
+        lblAdmin3.setBackground(new java.awt.Color(255, 255, 255));
+        lblAdmin3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblAdmin3.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin3.setText("   Administrador");
+        lblAdmin3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAdmin3lblAdminMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlAdmin3Layout = new javax.swing.GroupLayout(pnlAdmin3);
+        pnlAdmin3.setLayout(pnlAdmin3Layout);
+        pnlAdmin3Layout.setHorizontalGroup(
+            pnlAdmin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblAdmin3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+        );
+        pnlAdmin3Layout.setVerticalGroup(
+            pnlAdmin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblAdmin3, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+        );
+
+        pnlConsulta.setBackground(new java.awt.Color(0, 102, 102));
+
+        lblConsulta.setBackground(new java.awt.Color(0, 0, 0));
+        lblConsulta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        lblConsulta.setText("   Consultar Predio");
+
+        javax.swing.GroupLayout pnlConsultaLayout = new javax.swing.GroupLayout(pnlConsulta);
+        pnlConsulta.setLayout(pnlConsultaLayout);
+        pnlConsultaLayout.setHorizontalGroup(
+            pnlConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+        );
+        pnlConsultaLayout.setVerticalGroup(
+            pnlConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConsultaLayout.createSequentialGroup()
+                .addComponent(lblConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout capa5Layout = new javax.swing.GroupLayout(capa5);
+        capa5.setLayout(capa5Layout);
+        capa5Layout.setHorizontalGroup(
+            capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(capa5Layout.createSequentialGroup()
+                .addContainerGap(67, Short.MAX_VALUE)
+                .addGroup(capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        capa5Layout.setVerticalGroup(
+            capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(capa5Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(pnlAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153)
+                .addComponent(pnlConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(480, Short.MAX_VALUE))
+        );
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("SIMULADOR DE IMPUESTO PREDIAL");
+
+        lblGADM.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\java\\Logos\\Logo_GADM.jpg")); // NOI18N
+
+        lblImpuestoPredial.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\java\\Logos\\Impuesto_predial.jpg")); // NOI18N
+
+        escritorio.setLayer(capa5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(lblGADM, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(lblImpuestoPredial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addComponent(capa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(326, 326, 326))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblGADM)
+                            .addGroup(escritorioLayout.createSequentialGroup()
+                                .addComponent(lblImpuestoPredial)
+                                .addGap(12, 12, 12)))
+                        .addGap(178, 178, 178))))
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(capa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblGADM)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblImpuestoPredial, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblAdmin3lblAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdmin3lblAdminMouseClicked
+        TablaGestionPropiedades ventanaLE1 = new TablaGestionPropiedades();
+        escritorio.add(ventanaLE1);
+        ventanaLE1.show();
+    }//GEN-LAST:event_lblAdmin3lblAdminMouseClicked
+
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -73,10 +204,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuPrincipal().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel capa5;
+    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblAdmin3;
+    private javax.swing.JLabel lblConsulta;
+    private javax.swing.JLabel lblGADM;
+    private javax.swing.JLabel lblImpuestoPredial;
+    private javax.swing.JPanel pnlAdmin3;
+    private javax.swing.JPanel pnlConsulta;
     // End of variables declaration//GEN-END:variables
 }
