@@ -536,6 +536,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        limpiarTabla();
         cargarTabla();
     }//GEN-LAST:event_formMouseClicked
 
