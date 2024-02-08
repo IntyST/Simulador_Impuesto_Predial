@@ -173,9 +173,9 @@ public class Administrador extends javax.swing.JInternalFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        TablaGestionPropiedades LU=new TablaGestionPropiedades();
-        escritorio.add(LU);
-        LU.show();
+        PanelAdminitrador AD=new PanelAdminitrador();
+        escritorio.add(AD);
+        AD.show();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void userTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxtMousePressed

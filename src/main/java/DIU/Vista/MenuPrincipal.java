@@ -33,7 +33,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         escritorio = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblImagen1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -111,12 +111,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\pablo\\OneDrive\\Escritorio\\instituto superior 17 de julio\\PROYECTO DE AULA\\Simulacion_Impuesto_Predial\\src\\main\\java\\Logos\\Logo_GADM.jpg")); // NOI18N
+        lblImagen1.setIcon(new javax.swing.ImageIcon("C:\\Users\\pablo\\OneDrive\\Escritorio\\instituto superior 17 de julio\\PROYECTO DE AULA\\Simulacion_Impuesto_Predial\\src\\main\\resource\\Imagenes\\Logo_GADM.jpg")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("SIMULADOR DE IMPUESTO PREDIAL");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\pablo\\OneDrive\\Escritorio\\instituto superior 17 de julio\\PROYECTO DE AULA\\Simulacion_Impuesto_Predial\\src\\main\\java\\Logos\\ImpuestoPredial.jpg")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\pablo\\OneDrive\\Escritorio\\instituto superior 17 de julio\\PROYECTO DE AULA\\Simulacion_Impuesto_Predial\\src\\main\\resource\\Imagenes\\ImpuestoPredial.jpg")); // NOI18N
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -130,7 +130,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblImagen1)
                             .addComponent(jLabel3))))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
@@ -138,7 +138,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(jLabel1)
+                .addComponent(lblImagen1)
                 .addGap(38, 38, 38)
                 .addComponent(jLabel3)
                 .addGap(32, 32, 32)
@@ -183,6 +183,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Administrador AD=new Administrador();
         escritorio.add(AD);
         AD.show();
+        //lblImagen1.setVisible(false);
     }//GEN-LAST:event_lblAdministradorMouseClicked
 
     /**
@@ -223,7 +224,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel Escritorio;
     public static javax.swing.JPanel escritorio;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -231,5 +231,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JLabel lblAdministrador5;
+    private javax.swing.JLabel lblImagen1;
     // End of variables declaration//GEN-END:variables
 }
