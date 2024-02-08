@@ -75,12 +75,12 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
         lblEdad = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
-        txtApellidos = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        txtCedula = new javax.swing.JTextField();
+        lblNombresRes = new javax.swing.JLabel();
+        lblCorreoRes = new javax.swing.JLabel();
+        lblApellidosRes = new javax.swing.JLabel();
+        lblEdadRes = new javax.swing.JLabel();
+        lblTelefonoRes = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPropiedadPro = new javax.swing.JTable();
@@ -109,7 +109,8 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        lblValorComercialRes = new javax.swing.JLabel();
+        lblEscudoIbarra = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -157,27 +158,27 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
 
         lblCorreo.setText("Correo electrónico:");
 
-        txtApellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setOpaque(true);
+        lblNombresRes.setBackground(new java.awt.Color(153, 153, 153));
+        lblNombresRes.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombresRes.setOpaque(true);
 
-        jLabel2.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setOpaque(true);
+        lblCorreoRes.setBackground(new java.awt.Color(153, 153, 153));
+        lblCorreoRes.setForeground(new java.awt.Color(0, 0, 0));
+        lblCorreoRes.setOpaque(true);
 
-        jLabel3.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setOpaque(true);
+        lblApellidosRes.setBackground(new java.awt.Color(153, 153, 153));
+        lblApellidosRes.setForeground(new java.awt.Color(0, 0, 0));
+        lblApellidosRes.setOpaque(true);
 
-        jLabel4.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setOpaque(true);
+        lblEdadRes.setBackground(new java.awt.Color(153, 153, 153));
+        lblEdadRes.setForeground(new java.awt.Color(0, 0, 0));
+        lblEdadRes.setOpaque(true);
 
-        jLabel5.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setOpaque(true);
+        lblTelefonoRes.setBackground(new java.awt.Color(153, 153, 153));
+        lblTelefonoRes.setForeground(new java.awt.Color(0, 0, 0));
+        lblTelefonoRes.setOpaque(true);
 
         javax.swing.GroupLayout pnlPersonaLayout = new javax.swing.GroupLayout(pnlPersona);
         pnlPersona.setLayout(pnlPersonaLayout);
@@ -190,20 +191,20 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                     .addComponent(lblCedula)
                     .addComponent(lblApellidos))
                 .addGap(32, 32, 32)
-                .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
+                .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNombresRes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblApellidosRes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTelefono)
                     .addComponent(lblCorreo)
                     .addComponent(lblEdad))
                 .addGap(18, 18, 18)
                 .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCorreoRes, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefonoRes, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEdadRes, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(208, 208, 208))
         );
         pnlPersonaLayout.setVerticalGroup(
@@ -213,12 +214,12 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                 .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlPersonaLayout.createSequentialGroup()
                         .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPersonaLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblNombresRes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPersonaLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblTelefono))))
@@ -227,18 +228,18 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                         .addGap(39, 39, 39)
                         .addComponent(lblNombres))
                     .addGroup(pnlPersonaLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCorreoRes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTelefonoRes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPersonaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEdadRes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblEdad))
                             .addGroup(pnlPersonaLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblApellidosRes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16)))
                         .addGap(40, 40, 40))
                     .addGroup(pnlPersonaLayout.createSequentialGroup()
@@ -330,9 +331,9 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setOpaque(true);
+        lblValorComercialRes.setBackground(new java.awt.Color(153, 153, 153));
+        lblValorComercialRes.setForeground(new java.awt.Color(0, 0, 0));
+        lblValorComercialRes.setOpaque(true);
 
         javax.swing.GroupLayout pnlPropiedadLayout = new javax.swing.GroupLayout(pnlPropiedad);
         pnlPropiedad.setLayout(pnlPropiedadLayout);
@@ -370,7 +371,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                     .addGroup(pnlPropiedadLayout.createSequentialGroup()
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlPropiedadLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblValorComercialRes, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPropiedadLayout.createSequentialGroup()
@@ -417,7 +418,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                                     .addComponent(txtValorEdificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlPropiedadLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                                 .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDireccion)
                                     .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -436,7 +437,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(pnlPropiedadLayout.createSequentialGroup()
                                         .addGap(20, 20, 20)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblValorComercialRes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(pnlPropiedadLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -444,16 +445,12 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                         .addContainerGap())))
         );
 
+        lblEscudoIbarra.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Escudo_de_Ibarra_(Ecuador).png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(387, 387, 387)
-                .addComponent(lblTitulo)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -471,11 +468,21 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                         .addGap(0, 605, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(108, Short.MAX_VALUE)
+                .addComponent(pnlPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(187, 187, 187))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(135, 135, 135))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblEscudoIbarra, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(387, 387, 387)
+                        .addComponent(lblTitulo)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,11 +494,13 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEscudoIbarra, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(24, 24, 24)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBuscar)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -521,7 +530,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
         PersonaYDatosPredialesModelo pM = new PersonaYDatosPredialesModelo(
                 0, // ID autogenerado en la base de datos
                 txtNombres.getText(),
-                txtApellidos.getText(),
+                txtCedula.getText(),
                 txtCedula.getText(),
                 txtCorreo.getText(),
                 txtTelefono.getText(),
@@ -554,18 +563,18 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtCedula.setText("");
-        txtNombres.setText("");
-        txtApellidos.setText("");
-        txtCorreo.setText("");
-        txtTelefono.setText("");
-        txtEdad.setText("");
+        lblNombresRes.setText("");
+        txtCedula.setText("");
+        lblCorreoRes.setText("");
+        lblTelefonoRes.setText("");
+        lblEdadRes.setText("");
         txtCodCastral.setText("");
         txtDireccion.setText("");
         txtAreaTotal.setText("");
         txtAreaConstruccion.setText("");
         txtValorTerreno.setText("");
         txtValorEdificacion.setText("");
-        txtValorComercial.setText("");
+        lblValorComercialRes.setText("");
 
         // Limpia la selección de los botones de radio
         rbtnRural.setSelected(false);
@@ -600,18 +609,18 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
         if (filaSeleccionada != -1) { // Verifica si se ha seleccionado una fila válida
             // Obtener los datos de la fila seleccionada y establecerlos en los campos correspondientes
             txtCedula.setText((String) dtm.getValueAt(filaSeleccionada, 1));
-            txtNombres.setText((String) dtm.getValueAt(filaSeleccionada, 2));
-            txtApellidos.setText((String) dtm.getValueAt(filaSeleccionada, 3));
-            txtCorreo.setText((String) dtm.getValueAt(filaSeleccionada, 4));
-            txtTelefono.setText((String) dtm.getValueAt(filaSeleccionada, 5));
-            txtEdad.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 6)));
+            lblNombresRes.setText((String) dtm.getValueAt(filaSeleccionada, 2));
+            txtCedula.setText((String) dtm.getValueAt(filaSeleccionada, 3));
+            lblCorreoRes.setText((String) dtm.getValueAt(filaSeleccionada, 4));
+            lblTelefonoRes.setText((String) dtm.getValueAt(filaSeleccionada, 5));
+            lblEdad.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 6)));
             txtCodCastral.setText((String) dtm.getValueAt(filaSeleccionada, 7));
             txtDireccion.setText((String) dtm.getValueAt(filaSeleccionada, 8));
             txtAreaTotal.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 9)));
             txtAreaConstruccion.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 10)));
             txtValorTerreno.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 11)));
             txtValorEdificacion.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 12)));
-            txtValorComercial.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 13)));
+            lblValorComercialRes.setText(String.valueOf(dtm.getValueAt(filaSeleccionada, 13)));
 
             // Establecer la selección de los botones de radio según el tipo de propiedad
             String tipoPropiedad = ((String) dtm.getValueAt(filaSeleccionada, 8)).trim(); // Obtener el tipo de propiedad de la fila seleccionada
@@ -634,7 +643,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
         PersonaYDatosPredialesModelo pM = new PersonaYDatosPredialesModelo(
                 0, // ID autogenerado en la base de datos
                 txtNombres.getText(),
-                txtApellidos.getText(),
+                txtCedula.getText(),
                 txtCedula.getText(),
                 txtCorreo.getText(),
                 txtTelefono.getText(),
@@ -691,7 +700,7 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
     public void limpiarEntradas() {
         txtCedula.setText("");
         txtNombres.setText("");
-        txtApellidos.setText("");
+        txtCedula.setText("");
         txtCorreo.setText("");
         txtTelefono.setText("");
         txtEdad.setText("");
@@ -715,27 +724,28 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidos;
+    private javax.swing.JLabel lblApellidosRes;
     private javax.swing.JLabel lblAreaConstruccion;
     private javax.swing.JLabel lblAreatotal;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCodCastral;
     private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblCorreoRes;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEdad;
+    private javax.swing.JLabel lblEdadRes;
+    private javax.swing.JLabel lblEscudoIbarra;
     private javax.swing.JLabel lblNombres;
+    private javax.swing.JLabel lblNombresRes;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTelefonoRes;
     private javax.swing.JLabel lblTipoPro;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblValorComercial;
+    private javax.swing.JLabel lblValorComercialRes;
     private javax.swing.JLabel lblValorEdificacion;
     private javax.swing.JLabel lblValorTerreno;
     private javax.swing.JPanel pnlPersona;
@@ -743,10 +753,10 @@ public class TablaGestionPropiedades extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rbtnRural;
     private javax.swing.JRadioButton rbtnUrbano;
     private javax.swing.JTable tblPropiedadPro;
-    private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtAreaConstruccion;
     private javax.swing.JTextField txtAreaTotal;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCodCastral;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtValorEdificacion;

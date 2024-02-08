@@ -101,7 +101,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(pnlAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(153, 153, 153)
                 .addComponent(pnlConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(480, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -109,9 +109,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("SIMULADOR DE IMPUESTO PREDIAL");
 
-        lblGADM.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\java\\Logos\\Logo_GADM.jpg")); // NOI18N
+        lblGADM.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Logo_GADM.jpg")); // NOI18N
 
-        lblImpuestoPredial.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\java\\Logos\\Impuesto_predial.jpg")); // NOI18N
+        lblImpuestoPredial.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Impuesto_predial.jpg")); // NOI18N
 
         escritorio.setLayer(capa5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -155,12 +155,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(escritorio)
+                .addContainerGap())
         );
 
         pack();
