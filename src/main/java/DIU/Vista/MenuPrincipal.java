@@ -180,9 +180,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void lblAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdministradorMouseClicked
         // TODO add your handling code here:
-        Administrador AD=new Administrador();
-        escritorio.add(AD);
-        AD.show();
+        InicioSecion IS=new InicioSecion();
+        escritorio.add(IS);
+        IS.show();
         //lblImagen1.setVisible(false);
     }//GEN-LAST:event_lblAdministradorMouseClicked
 

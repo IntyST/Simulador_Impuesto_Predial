@@ -101,9 +101,6 @@ public class PanelAdminitrador extends javax.swing.JInternalFrame {
 
     private void opGCiudadaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGCiudadaniaActionPerformed
         // TODO add your handling code here:
-        Gestorciudadano GC = new Gestorciudadano();
-        escritorio2.add(GC);
-       GC.show();
     }//GEN-LAST:event_opGCiudadaniaActionPerformed
 
     private void opGPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGPropietarioActionPerformed
