@@ -4,35 +4,41 @@
  */
 package DIU.Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
 public class PersonaModelo {
    private int idpersona;
+    private int cedula;
     private String nombres;
     private String apellidos;
-    private int cedula;
     private String correo;
     private String telefono;
-    private int edad;
+    private Date fechaNacimiento;
 
     // Constructor
     public PersonaModelo() {
         
     }
 
-    public PersonaModelo(int idpersona, int cedula, String nombres, String apellidos, String correo, String telefono, int edad) {
+    public PersonaModelo(int idpersona, int cedula, String nombres, String apellidos, String correo, String telefono, Date fechaNacimiento) {
         this.idpersona = idpersona;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
         this.telefono = telefono;
-        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    
+    public PersonaModelo(int cedula, String nombres, String apellidos) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+    }
 
     
 
@@ -85,14 +91,15 @@ public class PersonaModelo {
         this.telefono = telefono;
     }
 
-    public int getEdad() {
-        return edad;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
+   
      
 
     @Override

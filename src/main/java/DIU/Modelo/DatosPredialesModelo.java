@@ -10,7 +10,7 @@ package DIU.Modelo;
  */
 public class DatosPredialesModelo {
     private int idPred;
-    private String cedulaPer;
+    private int idPer;
     private String codCastralPred;
     private String tipoPred;
     private String direccionPropie;
@@ -23,10 +23,10 @@ public class DatosPredialesModelo {
     public DatosPredialesModelo() {
     }
 
-    public DatosPredialesModelo(int idPred, String codCastralPred, String cedulaPer, String tipoPred, String direccionPropie, double areaTotalPred, double areaConstruccionPred, double valorTerrenoPred, double valorEdificacionPred, double valorComercialPred) {
+    public DatosPredialesModelo(int idPred, int idPer, String codCastralPred, String tipoPred, String direccionPropie, double areaTotalPred, double areaConstruccionPred, double valorTerrenoPred, double valorEdificacionPred, double valorComercialPred) {
         this.idPred = idPred;
+        this.idPer = idPer;
         this.codCastralPred = codCastralPred;
-        this.cedulaPer = cedulaPer;
         this.tipoPred = tipoPred;
         this.direccionPropie = direccionPropie;
         this.areaTotalPred = areaTotalPred;
@@ -36,6 +36,21 @@ public class DatosPredialesModelo {
         this.valorComercialPred = valorComercialPred;
     }
 
+    
+
+    public DatosPredialesModelo(String codCastralPred, String tipoPred, String direccionPropie, double areaTotalPred, double areaConstruccionPred, double valorTerrenoPred, double valorEdificacionPred, double valorComercialPred) {
+        this.codCastralPred = codCastralPred;
+        this.tipoPred = tipoPred;
+        this.direccionPropie = direccionPropie;
+        this.areaTotalPred = areaTotalPred;
+        this.areaConstruccionPred = areaConstruccionPred;
+        this.valorTerrenoPred = valorTerrenoPred;
+        this.valorEdificacionPred = valorEdificacionPred;
+        this.valorComercialPred = valorComercialPred;
+    }
+
+    
+
     public int getIdPred() {
         return idPred;
     }
@@ -44,20 +59,21 @@ public class DatosPredialesModelo {
         this.idPred = idPred;
     }
 
+    public int getIdPer() {
+        return idPer;
+    }
+
+    public void setIdPer(int idPer) {
+        this.idPer = idPer;
+    }
+    
+    
     public String getCodCastralPred() {
         return codCastralPred;
     }
 
     public void setCodCastralPred(String codCastralPred) {
         this.codCastralPred = codCastralPred;
-    }
-
-    public String getCedulaPer() {
-        return cedulaPer;
-    }
-
-    public void setCedulaPer(String cedulaPer) {
-        this.cedulaPer = cedulaPer;
     }
 
     public String getTipoPred() {

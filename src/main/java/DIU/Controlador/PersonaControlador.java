@@ -5,6 +5,7 @@
 package DIU.Controlador;
 
 import DIU.Modelo.PersonaModelo;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +45,7 @@ public class PersonaControlador {
                     + "'" + p.getCedula() + "',"
                     + "'" + p.getCorreo() + "',"
                     + "'" + p.getTelefono() + "',"
-                    + "'" + p.getEdad() + "')";
+                    + "'" + p.getClass() + "')";
             ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
             int resultado = ejecutar.executeUpdate();
             if (resultado > 0) {
@@ -56,32 +57,55 @@ public class PersonaControlador {
             JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
         }
     }
-public ArrayList<Object[]> datosPersona() {
-    ArrayList<Object[]> listaObject = new ArrayList<>();
 
-    try {
-        String sql = "call sp_listaPersonas();";
-        ejecutar = (PreparedStatement) conectado.prepareCall(sql);
-        resultado = ejecutar.executeQuery();
-        int cont = 1;
-        while (resultado.next()) {
-            Object[] obpersona = new Object[6];
-            for (int i = 1; i < 6; i++) {
-                obpersona[i] = resultado.getObject(i + 1);
+    public ArrayList<Object[]> datosPersona() {
+        ArrayList<Object[]> listaObject = new ArrayList<>();
+
+        try {
+            String sql = "call sp_listaPersonas();";
+            ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+            resultado = ejecutar.executeQuery();
+            int cont = 1;
+            while (resultado.next()) {
+                Object[] obpersona = new Object[6];
+                for (int i = 1; i < 6; i++) {
+                    obpersona[i] = resultado.getObject(i + 1);
+                }
+                obpersona[0] = cont;
+                listaObject.add(obpersona);
+                cont++;
             }
-            obpersona[0] = cont;
-            listaObject.add(obpersona);
-            cont++;
-        }
-        ejecutar.close();
-        return listaObject;
+            ejecutar.close();
+            return listaObject;
 
-    } catch (SQLException e) {
-        System.out.println("ERROR SQL CARGA PERSONAS");
+        } catch (SQLException e) {
+            System.out.println("ERROR SQL CARGA PERSONAS");
+        }
+
+        return null;
     }
 
-    return null;
-}
-    
-   
+    public PersonaModelo recuperarDatosPersona(String cedula) {
+        PersonaModelo persona = new PersonaModelo();
+        try {
+            String sql = "CALL spRecuperarDatosPersona(?)";
+            CallableStatement statement = conectado.prepareCall(sql);
+            statement.setString(1, cedula);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                // Obtener los datos de la persona
+                persona.setNombres(rs.getString("nombres_res"));
+                persona.setApellidos(rs.getString("apellidos_res"));
+                persona.setCorreo(rs.getString("correo_res"));
+                persona.setTelefono(rs.getString("telefono_res"));
+                persona.setFechaNacimiento(rs.getDate("fechaNacimiento_res"));
+            } else {
+                System.out.println("No se encontraron datos para la cédula proporcionada.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
+        }
+        return persona;
+    }
+
 }

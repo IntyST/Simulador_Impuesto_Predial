@@ -103,7 +103,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void opLPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLPropiedadesActionPerformed
-        TablaGestionPropiedades Propiedades = new TablaGestionPropiedades();
+        TablaRegistrarPropiedad Propiedades = new TablaRegistrarPropiedad();
         escritorio.add(Propiedades);
         Propiedades.show();
     }//GEN-LAST:event_opLPropiedadesActionPerformed
