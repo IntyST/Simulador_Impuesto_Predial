@@ -4,6 +4,7 @@
  */
 package DIU.Vista;
 
+import DIU.Controlador.DatosPredialesControlador;
 import DIU.Controlador.PersonaControlador;
 import DIU.Modelo.DatosPredialesModelo;
 import DIU.Modelo.PersonaModelo;
@@ -25,12 +26,12 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     ArrayList<PersonaModelo> listaPersonaModelo = new ArrayList<>();
     ArrayList<DatosPredialesModelo> listaDatosPredialesModelo = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel();
-    
+
     public TablaRegistrarPropiedad() {
         initComponents();
         setModelo();
     }
-    
+
     public void setModelo() {
         String[] cabecera = {"Nro.", "Cédula", "Nombres", "Apellidos",
             "Código castral", "Tipo propiedad", "Dirección", "Área total", "Área construcción",
@@ -38,7 +39,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         modelo.setColumnIdentifiers(cabecera);
         tblDatos.setModel(modelo);
     }
-    
+
     private void setDatos() {
         // Limpiar tabla antes de agregar nuevos datos
         modelo.setRowCount(0);
@@ -70,7 +71,6 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         }
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -436,62 +436,101 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        
+        // Obtener la cédula ingresada por el usuario
+        String cedula = txtCedula.getText();
+
+// Verificar si la cédula está vacía
+        if (cedula.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula.");
+            return; // Salir del método si la cédula está vacía
+        }
+
+// Obtener los demás datos ingresados por el usuario
+        String codCastral = txtCodCastral.getText();
+        String tipoPred = "";
+
+// Verificar qué opción ha sido seleccionada
+        if (rbtnUrbano.isSelected()) {
+            tipoPred = "Urbano";
+        } else if (rbtnRural.isSelected()) {
+            tipoPred = "Rural";
+        } else {
+            // Si ninguna opción ha sido seleccionada, mostrar un mensaje de error y salir del método
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione el tipo de propiedad.");
+            return;
+        }
+
+        String direccion = txtDireccion.getText();
+        double areaTotal = Double.parseDouble(txtAreaTotal.getText());
+        double areaConstruccion = Double.parseDouble(txtAreaConstruccion.getText());
+        double valorTerreno = Double.parseDouble(txtValorTerreno.getText());
+        double valorEdificacion = Double.parseDouble(txtValorEdificacion.getText());
+
+// Crear una instancia del controlador de datos prediales
+        DatosPredialesControlador datosPredialesControlador = new DatosPredialesControlador();
+
+// Crear una instancia del modelo de datos prediales
+        DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred,
+                direccion, areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
+
+// Llamar al método para crear los datos prediales
+        datosPredialesControlador.crearDatosPrediales(cedula, datosPrediales);
+
 
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-       
+
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         // Obtener la cédula ingresada por el usuario
-    String cedula = txtCedula.getText();
-    
-    // Verificar si la cédula tiene una longitud válida
-    if (cedula.length() == 10) {
-        // Crear una instancia del controlador de persona
-        PersonaControlador personaControlador = new PersonaControlador();
-        
-        // Llamar al método para recuperar los datos de la persona
-        PersonaModelo persona = personaControlador.recuperarDatosPersona(cedula);
-        
-        // Verificar si se encontraron datos para la cédula ingresada
-        if (persona != null) {
-            // Mostrar los datos de la persona en los campos correspondientes
-            lblNombresRes.setText(persona.getNombres());
-            lblApellidosRes.setText(persona.getApellidos());
-            lblCorreoRes.setText(persona.getCorreo());
-            lblTelefonoRes.setText(persona.getTelefono());
-            
-            // Calcular la edad actual en base a la fecha de nacimiento
-            java.util.Date fechaNacimientoUtil = persona.getFechaNacimiento();
-            java.sql.Date fechaNacimientoSQL = new java.sql.Date(fechaNacimientoUtil.getTime());
-            LocalDate fechaNacimiento = fechaNacimientoSQL.toLocalDate();
-            LocalDate fechaActual = LocalDate.now();
-            int edad = Period.between(fechaNacimiento, fechaActual).getYears();
-            
-            // Mostrar la edad en el JLabel correspondiente
-            lblEdadRes.setText(Integer.toString(edad));
-        } else {
-            // Limpiar los campos si no se encontraron datos para la cédula ingresada
-            lblNombresRes.setText("");
-            lblApellidosRes.setText("");
-            lblCorreoRes.setText("");
-            lblTelefonoRes.setText("");
-            lblEdadRes.setText("");
-            JOptionPane.showMessageDialog(null, "No se encontraron datos para la cédula ingresada.");
+        String cedula = txtCedula.getText();
+
+        // Verificar si la cédula tiene una longitud válida
+        if (cedula.length() == 10) {
+            // Crear una instancia del controlador de persona
+            PersonaControlador personaControlador = new PersonaControlador();
+
+            // Llamar al método para recuperar los datos de la persona
+            PersonaModelo persona = personaControlador.recuperarDatosPersona(cedula);
+
+            // Verificar si se encontraron datos para la cédula ingresada
+            if (persona != null) {
+                // Mostrar los datos de la persona en los campos correspondientes
+                lblNombresRes.setText(persona.getNombres());
+                lblApellidosRes.setText(persona.getApellidos());
+                lblCorreoRes.setText(persona.getCorreo());
+                lblTelefonoRes.setText(persona.getTelefono());
+
+                // Calcular la edad actual en base a la fecha de nacimiento
+                java.util.Date fechaNacimientoUtil = persona.getFechaNacimiento();
+                java.sql.Date fechaNacimientoSQL = new java.sql.Date(fechaNacimientoUtil.getTime());
+                LocalDate fechaNacimiento = fechaNacimientoSQL.toLocalDate();
+                LocalDate fechaActual = LocalDate.now();
+                int edad = Period.between(fechaNacimiento, fechaActual).getYears();
+
+                // Mostrar la edad en el JLabel correspondiente
+                lblEdadRes.setText(Integer.toString(edad));
+            } else {
+                // Limpiar los campos si no se encontraron datos para la cédula ingresada
+                lblNombresRes.setText("");
+                lblApellidosRes.setText("");
+                lblCorreoRes.setText("");
+                lblTelefonoRes.setText("");
+                lblEdadRes.setText("");
+                JOptionPane.showMessageDialog(null, "No se encontraron datos para la cédula ingresada.");
+            }
         }
-    }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
 

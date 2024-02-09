@@ -88,7 +88,7 @@ public class PersonaControlador {
     public PersonaModelo recuperarDatosPersona(String cedula) {
         PersonaModelo persona = new PersonaModelo();
         try {
-            String sql = "CALL spRecuperarDatosPersona(?)";
+            String sql = "CALL sp_RecuperarDatosPersona(?)";
             CallableStatement statement = conectado.prepareCall(sql);
             statement.setString(1, cedula);
             ResultSet rs = statement.executeQuery();

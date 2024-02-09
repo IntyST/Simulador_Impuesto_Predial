@@ -49,6 +49,17 @@ public class DatosPredialesModelo {
         this.valorComercialPred = valorComercialPred;
     }
 
+    public DatosPredialesModelo(String codCastralPred, String tipoPred, String direccionPropie, double areaTotalPred, double areaConstruccionPred, double valorTerrenoPred, double valorEdificacionPred) {
+        this.codCastralPred = codCastralPred;
+        this.tipoPred = tipoPred;
+        this.direccionPropie = direccionPropie;
+        this.areaTotalPred = areaTotalPred;
+        this.areaConstruccionPred = areaConstruccionPred;
+        this.valorTerrenoPred = valorTerrenoPred;
+        this.valorEdificacionPred = valorEdificacionPred;
+    }
+    
+
     
 
     public int getIdPred() {
