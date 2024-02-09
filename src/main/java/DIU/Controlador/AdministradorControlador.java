@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class AdministradorControlador {
-    private AdministradorModelo persona;
+    /*private AdministradorModelo persona;
     ConexionBDD conectar = new ConexionBDD();
     Connection conectado=(Connection)conectar.conectar();
     PreparedStatement ejecutar;
@@ -45,6 +45,6 @@ public class AdministradorControlador {
             return false;
 }
 
-}
+}*/
     
 }
