@@ -10,8 +10,8 @@ package DIU.Modelo;
  */
 public class DatosPredialesModelo {
     private int idPred;
-    private String codCastralPred;
     private String cedulaPer;
+    private String codCastralPred;
     private String tipoPred;
     private String direccionPropie;
     private double areaTotalPred;

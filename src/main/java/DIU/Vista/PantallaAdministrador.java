@@ -26,10 +26,10 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPropiedades = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        opLPropiedades = new javax.swing.JMenuItem();
         menuPropietarios = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         menuCuentas = new javax.swing.JMenu();
@@ -38,21 +38,26 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1430, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 592, Short.MAX_VALUE)
         );
 
         menuPropiedades.setText("Gestión Propiedades");
 
-        jMenuItem1.setText("Propiedades");
-        menuPropiedades.add(jMenuItem1);
+        opLPropiedades.setText("Propiedades");
+        opLPropiedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opLPropiedadesActionPerformed(evt);
+            }
+        });
+        menuPropiedades.add(opLPropiedades);
 
         jMenuBar1.add(menuPropiedades);
 
@@ -69,6 +74,11 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         MenuAdmin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\AdministradorImgn.jpg")); // NOI18N
 
         jMenuItem3.setText("Cerrar Sesión");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         MenuAdmin.add(jMenuItem3);
 
         jMenuBar1.add(MenuAdmin);
@@ -81,16 +91,28 @@ public class PantallaAdministrador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1)
+                .addComponent(escritorio)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void opLPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLPropiedadesActionPerformed
+        TablaGestionPropiedades Propiedades = new TablaGestionPropiedades();
+        escritorio.add(Propiedades);
+        Propiedades.show();
+    }//GEN-LAST:event_opLPropiedadesActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       PantallaPrincipal pantallaPrin  = new PantallaPrincipal();
+        pantallaPrin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,13 +152,13 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuAdmin;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menuCuentas;
     private javax.swing.JMenu menuPropiedades;
     private javax.swing.JMenu menuPropietarios;
+    private javax.swing.JMenuItem opLPropiedades;
     // End of variables declaration//GEN-END:variables
 }

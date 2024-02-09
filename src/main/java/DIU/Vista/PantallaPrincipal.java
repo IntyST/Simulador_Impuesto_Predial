@@ -171,9 +171,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAdmin3lblAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdmin3lblAdminMouseClicked
-        TablaGestionPropiedades ventanaLE1 = new TablaGestionPropiedades();
-        escritorio.add(ventanaLE1);
-        ventanaLE1.show();
+        PantallaAdministrador pantallaAdmin  = new PantallaAdministrador();
+        pantallaAdmin.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblAdmin3lblAdminMouseClicked
 
     /**
