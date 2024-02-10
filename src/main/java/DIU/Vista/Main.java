@@ -10,7 +10,7 @@ package DIU.Vista;
  */
 public class Main {
     public static void main(String[] args) {
-        MenuPrincipal menu =new MenuPrincipal();
+        InicioSecion menu =new InicioSecion();
         menu.setVisible(true);
     }
     
