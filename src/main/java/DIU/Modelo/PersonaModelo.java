@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class PersonaModelo {
    private int idpersona;
-    private int cedula;
+    private String cedula;
     private String nombres;
     private String apellidos;
     private String correo;
@@ -24,7 +24,7 @@ public class PersonaModelo {
         
     }
 
-    public PersonaModelo(int idpersona, int cedula, String nombres, String apellidos, String correo, String telefono, Date fechaNacimiento) {
+    public PersonaModelo(int idpersona, String cedula, String nombres, String apellidos, String correo, String telefono, Date fechaNacimiento) {
         this.idpersona = idpersona;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -34,7 +34,7 @@ public class PersonaModelo {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public PersonaModelo(int cedula, String nombres, String apellidos) {
+    public PersonaModelo(String cedula, String nombres, String apellidos) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -67,11 +67,11 @@ public class PersonaModelo {
         this.apellidos = apellidos;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 

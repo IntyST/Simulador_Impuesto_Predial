@@ -113,14 +113,38 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         lblEscudoIbarra = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
+        jScrollBar1 = new javax.swing.JScrollBar();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         pnlPersona.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESE LA CÉDULA DE LA PERSONA"));
 
@@ -142,8 +166,8 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
 
         txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyTyped(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyPressed(evt);
             }
         });
 
@@ -283,6 +307,13 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
             }
         });
 
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPropiedadLayout = new javax.swing.GroupLayout(pnlPropiedad);
         pnlPropiedad.setLayout(pnlPropiedadLayout);
         pnlPropiedadLayout.setHorizontalGroup(
@@ -316,14 +347,19 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAreaConstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtAreaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPropiedadLayout.createSequentialGroup()
                         .addComponent(txtValorEdificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPropiedadLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlPropiedadLayout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPropiedadLayout.createSequentialGroup()
                         .addComponent(txtValorTerreno, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -374,7 +410,9 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                                 .addComponent(lblValorTerreno, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(pnlPropiedadLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -396,6 +434,11 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDatos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -404,32 +447,38 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlPropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(lblEscudoIbarra)
-                .addGap(24, 24, 24))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pnlPropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(55, 55, 55)
+                        .addComponent(lblEscudoIbarra))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblEscudoIbarra)))
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblEscudoIbarra)))
-                .addGap(18, 18, 18)
-                .addComponent(pnlPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -439,17 +488,17 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         // Obtener la cédula ingresada por el usuario
         String cedula = txtCedula.getText();
 
-// Verificar si la cédula está vacía
+        // Verificar si la cédula está vacía
         if (cedula.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula.");
             return; // Salir del método si la cédula está vacía
         }
 
-// Obtener los demás datos ingresados por el usuario
+        // Obtener los demás datos ingresados por el usuario
         String codCastral = txtCodCastral.getText();
         String tipoPred = "";
 
-// Verificar qué opción ha sido seleccionada
+        // Verificar qué opción ha sido seleccionada
         if (rbtnUrbano.isSelected()) {
             tipoPred = "Urbano";
         } else if (rbtnRural.isSelected()) {
@@ -466,21 +515,41 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         double valorTerreno = Double.parseDouble(txtValorTerreno.getText());
         double valorEdificacion = Double.parseDouble(txtValorEdificacion.getText());
 
-// Crear una instancia del controlador de datos prediales
+        // Crear una instancia del controlador de datos prediales
         DatosPredialesControlador datosPredialesControlador = new DatosPredialesControlador();
 
-// Crear una instancia del modelo de datos prediales
+        // Crear una instancia del modelo de datos prediales
         DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred,
                 direccion, areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
 
-// Llamar al método para crear los datos prediales
+        // Llamar al método para crear los datos prediales
         datosPredialesControlador.crearDatosPrediales(cedula, datosPrediales);
-
+        setDatos();
+        limpiarTabla();
+        cargarTabla();
 
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // Limpiar todos los campos
+        txtCedula.setText("");
+        txtCodCastral.setText("");
+        txtDireccion.setText("");
+        txtAreaTotal.setText("");
+        txtAreaConstruccion.setText("");
+        txtValorTerreno.setText("");
+        txtValorEdificacion.setText("");
 
+        // Desmarcar los botones de opción
+        rbtnUrbano.setSelected(false);
+        rbtnRural.setSelected(false);
+
+        // También puedes limpiar los JLabel si es necesario
+        lblNombresRes.setText("");
+        lblApellidosRes.setText("");
+        lblCorreoRes.setText("");
+        lblTelefonoRes.setText("");
+        lblEdadRes.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -488,11 +557,94 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // Obtener la cédula ingresada por el usuario
+    String cedula = txtCedula.getText();
+    
+    // Obtener los datos de los campos de texto y otros componentes
+    String codCastral = txtCodCastral.getText();
+    String tipoPred = "";
+    if (rbtnUrbano.isSelected()) {
+        tipoPred = "Urbano";
+    } else if (rbtnRural.isSelected()) {
+        tipoPred = "Rural";
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione el tipo de propiedad.");
+        return;
+    }
+    String direccion = txtDireccion.getText();
+    double areaTotal = Double.parseDouble(txtAreaTotal.getText());
+    double areaConstruccion = Double.parseDouble(txtAreaConstruccion.getText());
+    double valorTerreno = Double.parseDouble(txtValorTerreno.getText());
+    double valorEdificacion = Double.parseDouble(txtValorEdificacion.getText());
 
+    // Crear una instancia del controlador de datos prediales
+    DatosPredialesControlador datosPredialesControlador = new DatosPredialesControlador();
 
+    // Crear una instancia del modelo de datos prediales
+    DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred, direccion,
+            areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
+
+    // Llamar al método para actualizar los datos prediales
+    datosPredialesControlador.actualizarDatosPrediales(cedula, datosPrediales);
+    
+    // Limpiar la tabla y cargar los nuevos datos
+    limpiarTabla();
+    cargarTabla();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        limpiarTabla();
+        cargarTabla();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String cedula = txtCedula.getText();
+        DatosPredialesControlador pC = new DatosPredialesControlador();
+        ArrayList<Object[]> listaFilas = pC.buscarPropiedadesPorCedula(cedula);
+
+        // Verificar si se encontraron propiedades asociadas a la cédula ingresada
+        if (listaFilas != null && !listaFilas.isEmpty()) {
+            // Si se encontraron propiedades, agregarlas a la tabla
+            this.limpiarTabla();
+            for (Object[] listaFila : listaFilas) {
+                modelo.addRow(listaFila);
+            }
+            tblDatos.setModel(modelo);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron propiedades asociadas a esta cédula.");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
+        DefaultTableModel dtm = (DefaultTableModel) tblDatos.getModel();
+        int filaSeleccionada = tblDatos.getSelectedRow();
+        if (filaSeleccionada != -1) { // Verifica si se ha seleccionado una fila válida
+            // Obtener los datos de la fila seleccionada y establecerlos en los campos correspondientes
+            txtCedula.setText((String) dtm.getValueAt(filaSeleccionada, 1));
+            lblNombresRes.setText((String) dtm.getValueAt(filaSeleccionada, 2));
+            lblApellidosRes.setText((String) dtm.getValueAt(filaSeleccionada, 3));
+            // Asegúrate de verificar que los datos no sean null antes de convertirlos a String
+            if (dtm.getValueAt(filaSeleccionada, 4) != null) {
+                txtCodCastral.setText(dtm.getValueAt(filaSeleccionada, 4).toString());
+            }
+            // Verificar el tipo de propiedad y seleccionar el botón de radio correspondiente
+            String tipoPropiedad = (String) dtm.getValueAt(filaSeleccionada, 5);
+            if (tipoPropiedad.equalsIgnoreCase("Urbano")) {
+                rbtnUrbano.setSelected(true);
+                rbtnRural.setSelected(false);
+            } else if (tipoPropiedad.equalsIgnoreCase("Rural")) {
+                rbtnUrbano.setSelected(false);
+                rbtnRural.setSelected(true);
+            }
+            txtDireccion.setText((String) dtm.getValueAt(filaSeleccionada, 6));
+            txtAreaTotal.setText(dtm.getValueAt(filaSeleccionada, 7).toString());
+            txtAreaConstruccion.setText(dtm.getValueAt(filaSeleccionada, 8).toString());
+            txtValorTerreno.setText(dtm.getValueAt(filaSeleccionada, 9).toString());
+            txtValorEdificacion.setText(dtm.getValueAt(filaSeleccionada, 10).toString());
+        }
+    }//GEN-LAST:event_tblDatosMouseClicked
+
+    private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
         // Obtener la cédula ingresada por el usuario
         String cedula = txtCedula.getText();
 
@@ -531,14 +683,40 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "No se encontraron datos para la cédula ingresada.");
             }
         }
-    }//GEN-LAST:event_txtCedulaKeyTyped
+    }//GEN-LAST:event_txtCedulaKeyPressed
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        limpiarTabla();
+        cargarTabla();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void cargarTabla() {
+        DatosPredialesControlador pC = new DatosPredialesControlador();
+        ArrayList<Object[]> lista = pC.obtenerDatosPrediales();
+
+        for (Object[] filas : lista) {
+            modelo.addRow(filas);
+        }
+
+        tblDatos.setModel(modelo);
+    }
+
+    private void limpiarTabla() {
+        int a = modelo.getRowCount() - 1;  // Índices van de 0 a n-1
+        // System.out.println("Tabla " + a);   // Para mostrar por consola el resultado
+        for (int i = a; i >= 0; i--) {
+            // System.out.println("i " + i);    // Para mostrar por consola el resultado
+            modelo.removeRow(i);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblApellidosRes;
