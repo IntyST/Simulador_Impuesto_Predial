@@ -80,6 +80,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rbtGrupo = new javax.swing.ButtonGroup();
         pnlPersona = new javax.swing.JPanel();
         lblNombres = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
@@ -97,8 +98,8 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         lblCodCastral = new javax.swing.JLabel();
         txtCodCastral = new javax.swing.JTextField();
         lblTipoPro = new javax.swing.JLabel();
-        rbtnUrbano = new javax.swing.JRadioButton();
-        rbtnRural = new javax.swing.JRadioButton();
+        rbtUrbano = new javax.swing.JRadioButton();
+        rbtRural = new javax.swing.JRadioButton();
         lblDireccion = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         lblAreatotal = new javax.swing.JLabel();
@@ -265,9 +266,9 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
 
         lblTipoPro.setText("Tipo de propiedad:");
 
-        rbtnUrbano.setText("Urbano");
+        rbtUrbano.setText("Urbano");
 
-        rbtnRural.setText("Rural");
+        rbtRural.setText("Rural");
 
         lblDireccion.setText("Dirección de propiedad:");
 
@@ -332,8 +333,8 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                 .addGap(41, 41, 41)
                 .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCodCastral, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbtnUrbano)
-                    .addComponent(rbtnRural)
+                    .addComponent(rbtUrbano)
+                    .addComponent(rbtRural)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(178, 178, 178)
                 .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +381,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                     .addGroup(pnlPropiedadLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtnUrbano)
+                            .addComponent(rbtUrbano)
                             .addComponent(lblAreaConstruccion)
                             .addComponent(btnLimpiar)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPropiedadLayout.createSequentialGroup()
@@ -395,7 +396,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                             .addGroup(pnlPropiedadLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rbtnRural)
+                                    .addComponent(rbtRural)
                                     .addComponent(lblValorEdificacion)
                                     .addComponent(txtValorEdificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,9 +500,9 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         String tipoPred = "";
 
         // Verificar qué opción ha sido seleccionada
-        if (rbtnUrbano.isSelected()) {
+        if (rbtUrbano.isSelected()) {
             tipoPred = "Urbano";
-        } else if (rbtnRural.isSelected()) {
+        } else if (rbtRural.isSelected()) {
             tipoPred = "Rural";
         } else {
             // Si ninguna opción ha sido seleccionada, mostrar un mensaje de error y salir del método
@@ -531,29 +532,16 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // Limpiar todos los campos
-        txtCedula.setText("");
-        txtCodCastral.setText("");
-        txtDireccion.setText("");
-        txtAreaTotal.setText("");
-        txtAreaConstruccion.setText("");
-        txtValorTerreno.setText("");
-        txtValorEdificacion.setText("");
-
-        // Desmarcar los botones de opción
-        rbtnUrbano.setSelected(false);
-        rbtnRural.setSelected(false);
-
-        // También puedes limpiar los JLabel si es necesario
-        lblNombresRes.setText("");
-        lblApellidosRes.setText("");
-        lblCorreoRes.setText("");
-        lblTelefonoRes.setText("");
-        lblEdadRes.setText("");
+        limpiarEntradas();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        String codigoCastral = txtCodCastral.getText();
+        DatosPredialesControlador pC = new DatosPredialesControlador();
+        pC.eliminarDatosPrediales(codigoCastral);
+        limpiarTabla();
+        cargarTabla();
+        limpiarEntradas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -563,9 +551,9 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     // Obtener los datos de los campos de texto y otros componentes
     String codCastral = txtCodCastral.getText();
     String tipoPred = "";
-    if (rbtnUrbano.isSelected()) {
+    if (rbtUrbano.isSelected()) {
         tipoPred = "Urbano";
-    } else if (rbtnRural.isSelected()) {
+    } else if (rbtRural.isSelected()) {
         tipoPred = "Rural";
     } else {
         JOptionPane.showMessageDialog(null, "Por favor, seleccione el tipo de propiedad.");
@@ -595,6 +583,8 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         limpiarTabla();
         cargarTabla();
+        rbtGrupo.add(rbtUrbano);
+        rbtGrupo.add(rbtRural);
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -630,11 +620,11 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
             // Verificar el tipo de propiedad y seleccionar el botón de radio correspondiente
             String tipoPropiedad = (String) dtm.getValueAt(filaSeleccionada, 5);
             if (tipoPropiedad.equalsIgnoreCase("Urbano")) {
-                rbtnUrbano.setSelected(true);
-                rbtnRural.setSelected(false);
+                rbtUrbano.setSelected(true);
+                rbtRural.setSelected(false);
             } else if (tipoPropiedad.equalsIgnoreCase("Rural")) {
-                rbtnUrbano.setSelected(false);
-                rbtnRural.setSelected(true);
+                rbtUrbano.setSelected(false);
+                rbtRural.setSelected(true);
             }
             txtDireccion.setText((String) dtm.getValueAt(filaSeleccionada, 6));
             txtAreaTotal.setText(dtm.getValueAt(filaSeleccionada, 7).toString());
@@ -709,6 +699,28 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+    
+    public void limpiarEntradas(){
+        // Limpiar todos los campos
+        txtCedula.setText("");
+        txtCodCastral.setText("");
+        txtDireccion.setText("");
+        txtAreaTotal.setText("");
+        txtAreaConstruccion.setText("");
+        txtValorTerreno.setText("");
+        txtValorEdificacion.setText("");
+
+        // Desmarcar los botones de opción
+        rbtUrbano.setSelected(false);
+        rbtRural.setSelected(false);
+
+        // También puedes limpiar los JLabel si es necesario
+        lblNombresRes.setText("");
+        lblApellidosRes.setText("");
+        lblCorreoRes.setText("");
+        lblTelefonoRes.setText("");
+        lblEdadRes.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
@@ -739,8 +751,9 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblValorTerreno;
     private javax.swing.JPanel pnlPersona;
     private javax.swing.JPanel pnlPropiedad;
-    private javax.swing.JRadioButton rbtnRural;
-    private javax.swing.JRadioButton rbtnUrbano;
+    private javax.swing.ButtonGroup rbtGrupo;
+    private javax.swing.JRadioButton rbtRural;
+    private javax.swing.JRadioButton rbtUrbano;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtAreaConstruccion;
     private javax.swing.JTextField txtAreaTotal;

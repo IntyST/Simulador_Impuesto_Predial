@@ -132,35 +132,54 @@ public class DatosPredialesControlador {
         }
         return null;
     }
-    
+
     public void actualizarDatosPrediales(String cedula, DatosPredialesModelo datosPrediales) {
-    try {
-        // Preparar la llamada al procedimiento almacenado
-        String SQL = "CALL sp_ActualizarDatosPrediales(?, ?, ?, ?, ?, ?, ?, ?)";
-        ejecutar = conectar.prepareStatement(SQL);
+        try {
+            // Preparar la llamada al procedimiento almacenado
+            String SQL = "CALL sp_ActualizarDatosPrediales(?, ?, ?, ?, ?, ?, ?, ?)";
+            ejecutar = conectar.prepareStatement(SQL);
 
-        // Establecer los valores de los parámetros del procedimiento almacenado
-        ejecutar.setString(1, cedula);
-        ejecutar.setString(2, datosPrediales.getCodCastralPred());
-        ejecutar.setString(3, datosPrediales.getTipoPred());
-        ejecutar.setString(4, datosPrediales.getDireccionPropie());
-        ejecutar.setDouble(5, datosPrediales.getAreaTotalPred());
-        ejecutar.setDouble(6, datosPrediales.getAreaConstruccionPred());
-        ejecutar.setDouble(7, datosPrediales.getValorTerrenoPred());
-        ejecutar.setDouble(8, datosPrediales.getValorEdificacionPred());
+            // Establecer los valores de los parámetros del procedimiento almacenado
+            ejecutar.setString(1, cedula);
+            ejecutar.setString(2, datosPrediales.getCodCastralPred());
+            ejecutar.setString(3, datosPrediales.getTipoPred());
+            ejecutar.setString(4, datosPrediales.getDireccionPropie());
+            ejecutar.setDouble(5, datosPrediales.getAreaTotalPred());
+            ejecutar.setDouble(6, datosPrediales.getAreaConstruccionPred());
+            ejecutar.setDouble(7, datosPrediales.getValorTerrenoPred());
+            ejecutar.setDouble(8, datosPrediales.getValorEdificacionPred());
 
-        // Ejecutar el procedimiento almacenado
-        boolean resultado = ejecutar.execute();
+            // Ejecutar el procedimiento almacenado
+            boolean resultado = ejecutar.execute();
 
-        if (!resultado) {
-            JOptionPane.showMessageDialog(null, "Datos prediales actualizados con éxito");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales");
+            if (!resultado) {
+                JOptionPane.showMessageDialog(null, "Datos prediales actualizados con éxito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales: " + e.getMessage());
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales: " + e.getMessage());
     }
-}
 
+    public void eliminarDatosPrediales(String codCastralPred) {
+        try {
+            String sql = "CALL sp_EliminarDatosPrediales(?)"; // Usar un placeholder '?' para el parámetro
+            ejecutar = conectar.prepareStatement(sql);
+            ejecutar.setString(1, codCastralPred); // Establecer el valor del parámetro
+            int resultado = ejecutar.executeUpdate();
+            if (resultado > 0) {
+                JOptionPane.showMessageDialog(null, "Datos prediales eliminados con éxito");
+                System.out.println("DATOS PREDIALES ELIMINADOS CON ÉXITO");
+                ejecutar.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron datos prediales para eliminar");
+                System.out.println("NO SE ENCONTRARON DATOS PREDIALES PARA ELIMINAR");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar datos prediales: " + e.getMessage());
+            System.out.println("ERROR SQL: " + e);
+        }
+    }
 
 }

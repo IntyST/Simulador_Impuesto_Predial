@@ -1,0 +1,7 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_EliminarDatosPrediales`(
+    IN p_COD_CASTRAL_PRED varchar(45)
+)
+BEGIN
+    DELETE FROM DATOSPREDIALES
+    WHERE COD_CASTRAL_PRED = p_COD_CASTRAL_PRED;
+END

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="rbtGrupo">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
@@ -317,8 +321,8 @@
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtCodCastral" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                      <Component id="rbtnUrbano" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtnRural" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtUrbano" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtRural" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDireccion" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
@@ -379,7 +383,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="rbtnUrbano" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbtUrbano" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblAreaConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -399,7 +403,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="rbtnRural" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtRural" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblValorEdificacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtValorEdificacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -451,12 +455,12 @@
             <Property name="text" type="java.lang.String" value="Tipo de propiedad:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="rbtnUrbano">
+        <Component class="javax.swing.JRadioButton" name="rbtUrbano">
           <Properties>
             <Property name="text" type="java.lang.String" value="Urbano"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="rbtnRural">
+        <Component class="javax.swing.JRadioButton" name="rbtRural">
           <Properties>
             <Property name="text" type="java.lang.String" value="Rural"/>
           </Properties>
