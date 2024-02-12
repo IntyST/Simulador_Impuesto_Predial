@@ -69,6 +69,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblConsulta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblConsulta.setForeground(new java.awt.Color(255, 255, 255));
         lblConsulta.setText("   Consultar Predio");
+        lblConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblConsultaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsultaLayout = new javax.swing.GroupLayout(pnlConsulta);
         pnlConsulta.setLayout(pnlConsultaLayout);
@@ -166,6 +171,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pantallaAdmin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblAdmin3lblAdminMouseClicked
+
+    private void lblConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultaMouseClicked
+        PantallaConsultaPredios pantallaConsulta = new PantallaConsultaPredios();
+        pantallaConsulta.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblConsultaMouseClicked
 
     /**
      * @param args the command line arguments
