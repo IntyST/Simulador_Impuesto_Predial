@@ -4,6 +4,11 @@
  */
 package DIU.Vista;
 
+import DIU.Modelo.ConsultaPagosModelo;
+import DIU.Modelo.DatosPredialesModelo;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
@@ -13,12 +18,50 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     /**
      * Creates new form PantallaConsultaCedula
      */
+    public String cedula, codCastralPred, fecha_ingreso_pago, fecha_vencimiento_pago, descripcion_pago, direccion, sub_total_pago;
+    DefaultTableModel modelo = new DefaultTableModel();
+    ArrayList<ConsultaPagosModelo> listaConsultaPagoModelo = new ArrayList<>();
+    ArrayList<DatosPredialesModelo> listaDatosPredialesModelo = new ArrayList<>();
+
     public PantallaConsultaCedula() {
         initComponents();
+        setModelo();
     }
-    
-    
-    
+
+    public void setModelo() {
+        String[] cabecera = {"Nro.", "COD Castral", "Fecha de ingreso dd/mm/aaaa", "Fecha de vencimiento dd/mm/aaaa",
+            "Comentario", "Dirección", "Subtotal"};
+        modelo.setColumnIdentifiers(cabecera);
+        tblConsultaPredios.setModel(modelo);
+    }
+
+    private void setDatos() {
+        // Limpiar tabla antes de agregar nuevos datos
+        modelo.setRowCount(0);
+
+        // ESTRUCTURA INFORMACIÓN TABLA
+        int contador = 1;
+        for (int i = 0; i < Math.max(listaConsultaPagoModelo.size(), listaDatosPredialesModelo.size()); i++) {
+            Object[] datosFilaConsultaYDatosPrediales = new Object[modelo.getColumnCount()];
+            if (i < listaConsultaPagoModelo.size()) {
+                ConsultaPagosModelo persona = listaConsultaPagoModelo.get(i);
+                datosFilaConsultaYDatosPrediales[0] = contador;
+                datosFilaConsultaYDatosPrediales[2] = persona.getFecha_ingreso_pago();
+                datosFilaConsultaYDatosPrediales[3] = persona.getFecha_vencimiento_pago();
+                datosFilaConsultaYDatosPrediales[4] = persona.getDescripcion_pago();
+                datosFilaConsultaYDatosPrediales[6] = persona.getSub_total_pago();
+
+            }
+            if (i < listaDatosPredialesModelo.size()) {
+                DatosPredialesModelo datosPrediales = listaDatosPredialesModelo.get(i);
+                datosFilaConsultaYDatosPrediales[1] = datosPrediales.getCodCastralPred();
+                datosFilaConsultaYDatosPrediales[5] = datosPrediales.getDireccionPropie();
+            }
+            modelo.addRow(datosFilaConsultaYDatosPrediales);
+            contador++;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,6 +78,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsultaPredios = new javax.swing.JTable();
+        btnCalcularPago = new javax.swing.JButton();
 
         setTitle("CONSULTA DE PREDIOS");
 
@@ -47,6 +91,11 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         btnImprimir.setText("Imprimir");
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         tblConsultaPredios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,6 +109,8 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(tblConsultaPredios);
+
+        btnCalcularPago.setText("Calcular Pago");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,7 +132,9 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                         .addComponent(btnVerDqtosPrediales)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnImprimir)
-                        .addGap(582, 582, 582)
+                        .addGap(394, 394, 394)
+                        .addComponent(btnCalcularPago)
+                        .addGap(134, 134, 134)
                         .addComponent(btnSalir)
                         .addGap(36, 36, 36))))
         );
@@ -96,7 +149,8 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerDqtosPrediales)
                     .addComponent(btnImprimir)
-                    .addComponent(btnSalir))
+                    .addComponent(btnSalir)
+                    .addComponent(btnCalcularPago))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
@@ -105,8 +159,15 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        PantallaConsultaPredios pantallaPred  = new PantallaConsultaPredios();
+        pantallaPred.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalcularPago;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerDqtosPrediales;

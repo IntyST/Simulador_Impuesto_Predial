@@ -26,6 +26,7 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        escritorio = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         lblNroCedulaPredio = new javax.swing.JLabel();
         txtCedulaPredio = new javax.swing.JTextField();
@@ -40,11 +41,6 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
         lblNroCedulaPredio.setText("Ingrese Nro. Cédula I Nro. Predio:");
 
         txtCedulaPredio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtCedulaPredio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCedulaPredioKeyPressed(evt);
-            }
-        });
 
         btnConsultar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnConsultar.setText("Consultar");
@@ -54,50 +50,63 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
             }
         });
 
+        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(lblNroCedulaPredio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(txtCedulaPredio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(btnConsultar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jLabel1))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(lblNroCedulaPredio)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCedulaPredio, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(632, 632, 632)
+                        .addComponent(btnConsultar)))
+                .addContainerGap(681, Short.MAX_VALUE))
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNroCedulaPredio)
+                    .addComponent(txtCedulaPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(btnConsultar)
+                .addGap(274, 274, 274))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(lblNroCedulaPredio)
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCedulaPredio, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(741, Short.MAX_VALUE))
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addGap(211, 211, 211)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedulaPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNroCedulaPredio))
-                .addGap(18, 18, 18)
-                .addComponent(btnConsultar)
-                .addContainerGap(309, Short.MAX_VALUE))
+            .addComponent(escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        String cedulaPredio = txtCedulaPredio.getText();
+        PantallaConsultaCedula Consulta = new PantallaConsultaCedula();
+        escritorio.add(Consulta);
+        Consulta.show();
     }//GEN-LAST:event_btnConsultarActionPerformed
-
-    private void txtCedulaPredioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaPredioKeyPressed
-        
-    }//GEN-LAST:event_txtCedulaPredioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -136,6 +145,7 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblNroCedulaPredio;
     private javax.swing.JTextField txtCedulaPredio;
