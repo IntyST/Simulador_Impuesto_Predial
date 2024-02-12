@@ -106,7 +106,7 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        ConsultaPagosControlador consultaControlador = new ConsultaPagosControlador();
+    ConsultaPagosControlador consultaControlador = new ConsultaPagosControlador();
     String cedula = txtCedulaPredio.getText();
 
     // Obtener los datos de pago del controlador

@@ -4,10 +4,10 @@
  */
 package DIU.Vista;
 
-import DIU.Modelo.ConsultaPagosModelo;
-import DIU.Modelo.DatosPredialesModelo;
+import DIU.Controlador.ConsultaPagosControlador;
 import static DIU.Vista.PantallaConsultaPredios.escritorio;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,19 +19,23 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     /**
      * Creates new form PantallaConsultaCedula
      */
-    public String cedula, codCastralPred, fecha_ingreso_pago, fecha_vencimiento_pago, descripcion_pago, direccion, sub_total_pago;
+    public String codCastralPred, fecha_ingreso_pago, fecha_vencimiento_pago, descripcion_pago, direccion, sub_total_pago;
     DefaultTableModel modelo = new DefaultTableModel();
-    ArrayList<ConsultaPagosModelo> listaConsultaPagoModelo = new ArrayList<>();
-    ArrayList<DatosPredialesModelo> listaDatosPredialesModelo = new ArrayList<>();
+    // Declarar una variable de instancia para almacenar la cédula
+    private String cedula;
 
     public PantallaConsultaCedula(String cedula) {
         initComponents();
         setModelo();
+        // Asignar la cédula recibida al atributo de instancia
+        this.cedula = cedula;
+
+        // Actualizar el valor de la etiqueta lblCedula con la cédula recibida
         lblCedula.setText(cedula);
     }
 
     public void setModelo() {
-        String[] cabecera = {"Nro.", "COD Castral", "Fecha de ingreso dd/mm/aaaa", "Fecha de vencimiento dd/mm/aaaa",
+        String[] cabecera = {"Nro.", "COD Castral", "Fecha de ingreso", "Fecha de vencimiento",
             "Comentario", "Dirección", "Subtotal"};
         modelo.setColumnIdentifiers(cabecera);
         tblConsultaPredios.setModel(modelo);
@@ -164,9 +168,24 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVerDatosPredialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosPredialesActionPerformed
-        PantallaDatosPrediosCiudadano pantallaPredCidadano = new PantallaDatosPrediosCiudadano();
-        escritorio.add(pantallaPredCidadano);
-        pantallaPredCidadano.setVisible(true);
+        ConsultaPagosControlador controlador = new ConsultaPagosControlador();
+        ArrayList<Object[]> datosPrediales = controlador.verDatosPrediales(cedula);
+
+        // Verificar si se obtuvieron datos
+        if (datosPrediales != null) {
+            PantallaDatosPrediosCiudadano pantallaDatosPredios = new PantallaDatosPrediosCiudadano(cedula);
+
+            // Contador para contar los datos
+            int contador = 1;
+
+            // Pasar los datos a la pantalla y establecer el contador
+            pantallaDatosPredios.setDatos(datosPrediales, contador);
+
+            escritorio.add(pantallaDatosPredios);
+            pantallaDatosPredios.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontraron datos prediales para esta cédula.", "Sin datos", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnVerDatosPredialesActionPerformed
 
 

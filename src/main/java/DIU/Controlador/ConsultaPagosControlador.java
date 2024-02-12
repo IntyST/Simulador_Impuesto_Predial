@@ -69,4 +69,39 @@ public class ConsultaPagosControlador {
 
         return null;
     }
+    
+     public ArrayList<Object[]> verDatosPrediales(String cedula) {
+        ArrayList<Object[]> listaObject = new ArrayList<>();
+
+        try {
+            // Llamar al procedimiento almacenado
+            String sql = "{CALL sp_VerDatosPredialesCiudadano(?)}";
+            ejecutar = conectar.prepareCall(sql);
+            ejecutar.setString(1, cedula);
+            resultado = ejecutar.executeQuery();
+
+            // Recorrer el resultado y almacenarlo en una lista de objetos
+            while (resultado.next()) {
+                Object[] obpersona = new Object[8];
+                obpersona[0] = resultado.getString("codCastral");
+                obpersona[1] = resultado.getString("TipoPred");
+                obpersona[2] = resultado.getString("direccion");
+                obpersona[3] = resultado.getDouble("areaTotal");
+                obpersona[4] = resultado.getDouble("areaConstruccion");
+                obpersona[5] = resultado.getDouble("valorTerreno");
+                obpersona[6] = resultado.getDouble("valorEdificacion");
+                obpersona[7] = resultado.getDouble("valorComercial");
+                listaObject.add(obpersona);
+            }
+            resultado.close();
+            ejecutar.close();
+            return listaObject;
+
+        } catch (SQLException e) {
+            System.out.println("ERROR SQL CARGA CONSULTA PAGOS");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

@@ -4,6 +4,11 @@
  */
 package DIU.Vista;
 
+import static DIU.Vista.PantallaConsultaPredios.escritorio;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
@@ -13,8 +18,32 @@ public class PantallaDatosPrediosCiudadano extends javax.swing.JInternalFrame {
     /**
      * Creates new form PantallaDatosPrediosCiudadano
      */
-    public PantallaDatosPrediosCiudadano() {
+    DefaultTableModel modelo = new DefaultTableModel();
+
+    public PantallaDatosPrediosCiudadano(String cedula) {
         initComponents();
+        setModelo();
+        lblCedula.setText(cedula);
+    }
+
+    public void setModelo() {
+        String[] cabecera = {"Nro.", "COD Castral", "Tipo", "Dirección", "Área total", "Área construcción",
+            "Valor terreno", "Valor edificación", "Valor comercial"};
+        modelo.setColumnIdentifiers(cabecera);
+        tblDatosPrediales.setModel(modelo);
+    }
+
+    public void setDatos(ArrayList<Object[]> datos, int contador) {
+        // Limpiar la tabla antes de agregar nuevos datos
+        modelo.setRowCount(0);
+
+        // Agregar los datos a la tabla
+        for (Object[] fila : datos) {
+            Object[] nuevaFila = new Object[fila.length + 1];
+            nuevaFila[0] = contador++;
+            System.arraycopy(fila, 0, nuevaFila, 1, fila.length);
+            modelo.addRow(nuevaFila);
+        }
     }
 
     /**
@@ -27,7 +56,7 @@ public class PantallaDatosPrediosCiudadano extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatosPrediales = new javax.swing.JTable();
         btnImprimir = new javax.swing.JButton();
@@ -42,7 +71,7 @@ public class PantallaDatosPrediosCiudadano extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Datos prediales del ciudadano:");
 
-        jLabel2.setText("jLabel2");
+        lblCedula.setText("jLabel2");
 
         tblDatosPrediales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,7 +116,7 @@ public class PantallaDatosPrediosCiudadano extends javax.swing.JInternalFrame {
                         .addGap(64, 64, 64)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -104,7 +133,7 @@ public class PantallaDatosPrediosCiudadano extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                    .addComponent(lblCedula)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -123,11 +152,11 @@ public class PantallaDatosPrediosCiudadano extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        PantallaConsultaCedula pantallaPrin  = new PantallaConsultaCedula(title);
+        PantallaConsultaCedula pantallaPrin = new PantallaConsultaCedula(title);
         pantallaPrin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -137,9 +166,9 @@ public class PantallaDatosPrediosCiudadano extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCedula;
     private javax.swing.JTable tblDatosPrediales;
     // End of variables declaration//GEN-END:variables
 }
