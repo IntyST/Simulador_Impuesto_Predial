@@ -34,7 +34,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         menuCuentas = new javax.swing.JMenu();
         MenuAdmin = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        opLCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,13 +73,13 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         MenuAdmin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\AdministradorImgn.jpg")); // NOI18N
 
-        jMenuItem3.setText("Cerrar Sesión");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        opLCerrar.setText("Cerrar Sesión");
+        opLCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                opLCerrarActionPerformed(evt);
             }
         });
-        MenuAdmin.add(jMenuItem3);
+        MenuAdmin.add(opLCerrar);
 
         jMenuBar1.add(MenuAdmin);
 
@@ -108,11 +108,11 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         Propiedades.show();
     }//GEN-LAST:event_opLPropiedadesActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       PantallaPrincipal pantallaPrin  = new PantallaPrincipal();
+    private void opLCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLCerrarActionPerformed
+        PantallaPrincipal pantallaPrin = new PantallaPrincipal();
         pantallaPrin.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_opLCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,10 +155,10 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menuCuentas;
     private javax.swing.JMenu menuPropiedades;
     private javax.swing.JMenu menuPropietarios;
+    private javax.swing.JMenuItem opLCerrar;
     private javax.swing.JMenuItem opLPropiedades;
     // End of variables declaration//GEN-END:variables
 }

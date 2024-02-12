@@ -41,7 +41,7 @@
                       <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="btnVerDqtosPrediales" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnVerDatosPrediales" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnImprimir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="394" max="-2" attributes="0"/>
@@ -64,7 +64,7 @@
               </Group>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnVerDqtosPrediales" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnVerDatosPrediales" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCalcularPago" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -87,10 +87,13 @@
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnVerDqtosPrediales">
+    <Component class="javax.swing.JButton" name="btnVerDatosPrediales">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ver datos prediales"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerDatosPredialesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnImprimir">
       <Properties>

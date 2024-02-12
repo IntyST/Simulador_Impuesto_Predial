@@ -6,6 +6,7 @@ package DIU.Vista;
 
 import DIU.Modelo.ConsultaPagosModelo;
 import DIU.Modelo.DatosPredialesModelo;
+import static DIU.Vista.PantallaConsultaPredios.escritorio;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,9 +24,10 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     ArrayList<ConsultaPagosModelo> listaConsultaPagoModelo = new ArrayList<>();
     ArrayList<DatosPredialesModelo> listaDatosPredialesModelo = new ArrayList<>();
 
-    public PantallaConsultaCedula() {
+    public PantallaConsultaCedula(String cedula) {
         initComponents();
         setModelo();
+        lblCedula.setText(cedula);
     }
 
     public void setModelo() {
@@ -33,16 +35,6 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
             "Comentario", "Dirección", "Subtotal"};
         modelo.setColumnIdentifiers(cabecera);
         tblConsultaPredios.setModel(modelo);
-    }
-
-    public void setDatosPago(ArrayList<Object[]> datosPago) {
-        // Limpiar la tabla antes de agregar nuevos datos
-        modelo.setRowCount(0);
-
-        // Agregar los datos a la tabla
-        for (Object[] fila : datosPago) {
-            modelo.addRow(fila);
-        }
     }
 
     public void setDatosPago(int contador, ArrayList<Object[]> datosPago) {
@@ -70,7 +62,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
 
         lblTitulo = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
-        btnVerDqtosPrediales = new javax.swing.JButton();
+        btnVerDatosPrediales = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -87,7 +79,12 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
 
         lblCedula.setText("jLabel2");
 
-        btnVerDqtosPrediales.setText("Ver datos prediales");
+        btnVerDatosPrediales.setText("Ver datos prediales");
+        btnVerDatosPrediales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerDatosPredialesActionPerformed(evt);
+            }
+        });
 
         btnImprimir.setText("Imprimir");
 
@@ -130,7 +127,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1294, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnVerDqtosPrediales)
+                        .addComponent(btnVerDatosPrediales)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnImprimir)
                         .addGap(394, 394, 394)
@@ -148,7 +145,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                     .addComponent(lblCedula))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVerDqtosPrediales)
+                    .addComponent(btnVerDatosPrediales)
                     .addComponent(btnImprimir)
                     .addComponent(btnSalir)
                     .addComponent(btnCalcularPago))
@@ -166,12 +163,18 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnVerDatosPredialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosPredialesActionPerformed
+        PantallaDatosPrediosCiudadano pantallaPredCidadano = new PantallaDatosPrediosCiudadano();
+        escritorio.add(pantallaPredCidadano);
+        pantallaPredCidadano.setVisible(true);
+    }//GEN-LAST:event_btnVerDatosPredialesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcularPago;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnVerDqtosPrediales;
+    private javax.swing.JButton btnVerDatosPrediales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblTitulo;
