@@ -49,12 +49,13 @@ public class ConsultaPagosControlador {
 
             int cont = 1;
             while (resultado.next()) {
-                Object[] obpersona = new Object[5];
+                Object[] obpersona = new Object[6];
                 obpersona[0] = resultado.getString("COD_CASTRAL_PRED");
                 obpersona[1] = resultado.getDate("FECHA_INGRESO_PAGO");
                 obpersona[2] = resultado.getDate("FECHA_VENCIMIENTO_PAGO");
                 obpersona[3] = resultado.getString("DESCIPCION_PAGO");
-                obpersona[4] = resultado.getDouble("SUB_TOTAL_PAGO");
+                obpersona[4] = resultado.getString("DIRECCION_PRED");
+                obpersona[5] = resultado.getDouble("SUB_TOTAL_PAGO");
                 listaObject.add(obpersona);
                 cont++;
             }

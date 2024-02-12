@@ -35,29 +35,26 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         tblConsultaPredios.setModel(modelo);
     }
 
-    private void setDatos() {
-        // Limpiar tabla antes de agregar nuevos datos
+    public void setDatosPago(ArrayList<Object[]> datosPago) {
+        // Limpiar la tabla antes de agregar nuevos datos
         modelo.setRowCount(0);
 
-        // ESTRUCTURA INFORMACIÓN TABLA
-        int contador = 1;
-        for (int i = 0; i < Math.max(listaConsultaPagoModelo.size(), listaDatosPredialesModelo.size()); i++) {
-            Object[] datosFilaConsultaYDatosPrediales = new Object[modelo.getColumnCount()];
-            if (i < listaConsultaPagoModelo.size()) {
-                ConsultaPagosModelo persona = listaConsultaPagoModelo.get(i);
-                datosFilaConsultaYDatosPrediales[0] = contador;
-                datosFilaConsultaYDatosPrediales[2] = persona.getFecha_ingreso_pago();
-                datosFilaConsultaYDatosPrediales[3] = persona.getFecha_vencimiento_pago();
-                datosFilaConsultaYDatosPrediales[4] = persona.getDescripcion_pago();
-                datosFilaConsultaYDatosPrediales[6] = persona.getSub_total_pago();
+        // Agregar los datos a la tabla
+        for (Object[] fila : datosPago) {
+            modelo.addRow(fila);
+        }
+    }
 
-            }
-            if (i < listaDatosPredialesModelo.size()) {
-                DatosPredialesModelo datosPrediales = listaDatosPredialesModelo.get(i);
-                datosFilaConsultaYDatosPrediales[1] = datosPrediales.getCodCastralPred();
-                datosFilaConsultaYDatosPrediales[5] = datosPrediales.getDireccionPropie();
-            }
-            modelo.addRow(datosFilaConsultaYDatosPrediales);
+    public void setDatosPago(int contador, ArrayList<Object[]> datosPago) {
+        // Limpiar la tabla antes de agregar nuevos datos
+        modelo.setRowCount(0);
+
+        // Agregar los datos a la tabla
+        for (Object[] fila : datosPago) {
+            Object[] nuevaFila = new Object[7];
+            nuevaFila[0] = contador;
+            System.arraycopy(fila, 0, nuevaFila, 1, fila.length);
+            modelo.addRow(nuevaFila);
             contador++;
         }
     }
@@ -72,7 +69,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
         btnVerDqtosPrediales = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -80,11 +77,15 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         tblConsultaPredios = new javax.swing.JTable();
         btnCalcularPago = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("CONSULTA DE PREDIOS");
 
         lblTitulo.setText("Consulta Predios de:");
 
-        jLabel2.setText("jLabel2");
+        lblCedula.setText("jLabel2");
 
         btnVerDqtosPrediales.setText("Ver datos prediales");
 
@@ -120,7 +121,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                 .addGap(112, 112, 112)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
@@ -144,7 +145,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
-                    .addComponent(jLabel2))
+                    .addComponent(lblCedula))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerDqtosPrediales)
@@ -160,7 +161,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        PantallaConsultaPredios pantallaPred  = new PantallaConsultaPredios();
+        PantallaConsultaPredios pantallaPred = new PantallaConsultaPredios();
         pantallaPred.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -171,8 +172,8 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerDqtosPrediales;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblConsultaPredios;
     // End of variables declaration//GEN-END:variables

@@ -41,9 +41,6 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     }
 
     private void setDatos() {
-        // Limpiar tabla antes de agregar nuevos datos
-        modelo.setRowCount(0);
-
         // ESTRUCTURA INFORMACIÓN TABLA
         int contador = 1;
         for (int i = 0; i < Math.max(listaPersonaModelo.size(), listaDatosPredialesModelo.size()); i++) {
