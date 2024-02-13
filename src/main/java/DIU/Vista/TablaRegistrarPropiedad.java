@@ -6,6 +6,7 @@ package DIU.Vista;
 
 import DIU.Controlador.DatosPredialesControlador;
 import DIU.Controlador.PersonaControlador;
+import DIU.Modelo.ConsultaPagosModelo;
 import DIU.Modelo.DatosPredialesModelo;
 import DIU.Modelo.PersonaModelo;
 import java.util.ArrayList;
@@ -516,15 +517,34 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         double valorTerreno = Double.parseDouble(txtValorTerreno.getText());
         double valorEdificacion = Double.parseDouble(txtValorEdificacion.getText());
 
+        // Calcular el subtotal del pago
+        double subTotalPago;
+        if (tipoPred.equals("Urbano")) {
+            subTotalPago = (valorTerreno + valorEdificacion) * 1.10 / 1000;
+        } else { // Rural
+            subTotalPago = (valorTerreno + valorEdificacion) * 0.95 / 1000;
+        }
+
         // Crear una instancia del controlador de datos prediales
         DatosPredialesControlador datosPredialesControlador = new DatosPredialesControlador();
 
-        // Crear una instancia del modelo de datos prediales
         DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred,
                 direccion, areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
 
-        // Llamar al método para crear los datos prediales
-        datosPredialesControlador.crearDatosPrediales(cedula, datosPrediales);
+        // Crear fechas de ingreso y vencimiento
+        java.sql.Date fechaIngreso = java.sql.Date.valueOf("2024-01-01");
+        java.sql.Date fechaVencimiento = java.sql.Date.valueOf("2024-12-31");
+
+        // Crear un objeto ConsultaPagosModelo y establecer sus propiedades
+        ConsultaPagosModelo consultaPagos = new ConsultaPagosModelo();
+        consultaPagos.setFecha_ingreso_pago(fechaIngreso);
+        consultaPagos.setFecha_vencimiento_pago(fechaVencimiento);
+        consultaPagos.setDescripcion_pago("Pago de impuestos predial anual " + tipoPred);
+        consultaPagos.setSub_total_pago(subTotalPago);
+
+        // Llamar al método para crear los datos prediales y pagos
+        datosPredialesControlador.crearDatosPredialesYPagos(cedula, datosPrediales, consultaPagos);
+
         setDatos();
         limpiarTabla();
         cargarTabla();
@@ -546,38 +566,38 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // Obtener la cédula ingresada por el usuario
-    String cedula = txtCedula.getText();
-    
-    // Obtener los datos de los campos de texto y otros componentes
-    String codCastral = txtCodCastral.getText();
-    String tipoPred = "";
-    if (rbtUrbano.isSelected()) {
-        tipoPred = "Urbano";
-    } else if (rbtRural.isSelected()) {
-        tipoPred = "Rural";
-    } else {
-        JOptionPane.showMessageDialog(null, "Por favor, seleccione el tipo de propiedad.");
-        return;
-    }
-    String direccion = txtDireccion.getText();
-    double areaTotal = Double.parseDouble(txtAreaTotal.getText());
-    double areaConstruccion = Double.parseDouble(txtAreaConstruccion.getText());
-    double valorTerreno = Double.parseDouble(txtValorTerreno.getText());
-    double valorEdificacion = Double.parseDouble(txtValorEdificacion.getText());
+        String cedula = txtCedula.getText();
 
-    // Crear una instancia del controlador de datos prediales
-    DatosPredialesControlador datosPredialesControlador = new DatosPredialesControlador();
+        // Obtener los datos de los campos de texto y otros componentes
+        String codCastral = txtCodCastral.getText();
+        String tipoPred = "";
+        if (rbtUrbano.isSelected()) {
+            tipoPred = "Urbano";
+        } else if (rbtRural.isSelected()) {
+            tipoPred = "Rural";
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione el tipo de propiedad.");
+            return;
+        }
+        String direccion = txtDireccion.getText();
+        double areaTotal = Double.parseDouble(txtAreaTotal.getText());
+        double areaConstruccion = Double.parseDouble(txtAreaConstruccion.getText());
+        double valorTerreno = Double.parseDouble(txtValorTerreno.getText());
+        double valorEdificacion = Double.parseDouble(txtValorEdificacion.getText());
 
-    // Crear una instancia del modelo de datos prediales
-    DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred, direccion,
-            areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
+        // Crear una instancia del controlador de datos prediales
+        DatosPredialesControlador datosPredialesControlador = new DatosPredialesControlador();
 
-    // Llamar al método para actualizar los datos prediales
-    datosPredialesControlador.actualizarDatosPrediales(cedula, datosPrediales);
-    
-    // Limpiar la tabla y cargar los nuevos datos
-    limpiarTabla();
-    cargarTabla();
+        // Crear una instancia del modelo de datos prediales
+        DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred, direccion,
+                areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
+
+        // Llamar al método para actualizar los datos prediales
+        datosPredialesControlador.actualizarDatosPrediales(cedula, datosPrediales);
+
+        // Limpiar la tabla y cargar los nuevos datos
+        limpiarTabla();
+        cargarTabla();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
@@ -699,8 +719,8 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
-    
-    public void limpiarEntradas(){
+
+    public void limpiarEntradas() {
         // Limpiar todos los campos
         txtCedula.setText("");
         txtCodCastral.setText("");

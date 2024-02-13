@@ -9,6 +9,8 @@ import static DIU.Vista.PantallaConsultaPredios.escritorio;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -27,12 +29,17 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     public PantallaConsultaCedula(String cedula) {
         initComponents();
         setModelo();
-        // Asignar la cédula recibida al atributo de instancia
         this.cedula = cedula;
-
-        // Actualizar el valor de la etiqueta lblCedula con la cédula recibida
         lblCedula.setText(cedula);
+        lblFecha.setText(fechaString);
     }
+
+    // Obtener la fecha actual
+    Date fechaActual = new Date();
+
+    // Formatear la fecha a un String
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    String fechaString = formato.format(fechaActual);
 
     public void setModelo() {
         String[] cabecera = {"Nro.", "COD Castral", "Fecha de ingreso", "Fecha de vencimiento",
@@ -72,6 +79,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsultaPredios = new javax.swing.JTable();
         btnCalcularPago = new javax.swing.JButton();
+        lblFecha = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -114,30 +122,35 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
 
         btnCalcularPago.setText("Calcular Pago");
 
+        lblFecha.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(lblTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1294, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(16, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnVerDatosPrediales)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnImprimir)
-                        .addGap(394, 394, 394)
-                        .addComponent(btnCalcularPago)
-                        .addGap(134, 134, 134)
-                        .addComponent(btnSalir)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(lblTitulo)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnVerDatosPrediales)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnImprimir)
+                                .addGap(394, 394, 394)
+                                .addComponent(btnCalcularPago)
+                                .addGap(134, 134, 134)
+                                .addComponent(btnSalir)))
                         .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
@@ -146,7 +159,8 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
-                    .addComponent(lblCedula))
+                    .addComponent(lblCedula)
+                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerDatosPrediales)
@@ -155,7 +169,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                     .addComponent(btnCalcularPago))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,6 +210,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnVerDatosPrediales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblConsultaPredios;
     // End of variables declaration//GEN-END:variables

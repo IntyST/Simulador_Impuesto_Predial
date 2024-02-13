@@ -4,6 +4,7 @@
  */
 package DIU.Controlador;
 
+import DIU.Modelo.ConsultaPagosModelo;
 import DIU.Modelo.DatosPredialesModelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,9 +37,9 @@ public class DatosPredialesControlador {
         this.DatosPredios = DatosPredios;
     }
 
-    public void crearDatosPrediales(String cedula, DatosPredialesModelo datosPrediales) {
+    public void crearDatosPredialesYPagos(String cedula, DatosPredialesModelo datosPrediales, ConsultaPagosModelo consultaPagos) {
         try {
-            String SQL = "CALL sp_InsertarDatosPrediales(?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "CALL sp_InsertarDatosPredialesPagos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ejecutar = conectar.prepareStatement(SQL);
 
             // Establecer los valores de los parámetros del procedimiento almacenado
@@ -50,17 +51,20 @@ public class DatosPredialesControlador {
             ejecutar.setDouble(6, datosPrediales.getAreaConstruccionPred());
             ejecutar.setDouble(7, datosPrediales.getValorTerrenoPred());
             ejecutar.setDouble(8, datosPrediales.getValorEdificacionPred());
+            ejecutar.setDate(9, consultaPagos.getFecha_ingreso_pago());
+            ejecutar.setDate(10, consultaPagos.getFecha_vencimiento_pago());
+            ejecutar.setString(11, consultaPagos.getDescripcion_pago());
+            ejecutar.setDouble(12, consultaPagos.getSub_total_pago());
 
-            // El valor comercial no se establece aquí, ya que se calcula dentro del procedimiento almacenado
             int res = ejecutar.executeUpdate();
 
             if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Datos prediales creados con éxito");
+                JOptionPane.showMessageDialog(null, "Datos prediales y pagos creados con éxito");
             } else {
-                JOptionPane.showMessageDialog(null, "Error al crear los datos prediales");
+                JOptionPane.showMessageDialog(null, "Error al crear los datos prediales y pagos");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al crear los datos prediales: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al crear los datos prediales y pagos: " + e.getMessage());
         }
     }
 

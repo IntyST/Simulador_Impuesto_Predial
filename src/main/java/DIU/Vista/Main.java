@@ -6,7 +6,7 @@ package DIU.Vista;
 
 /**
  *
- * @author Usuario
+ * @author Inty Simbaña 
  */
 public class Main {
     public static void main(String[] args) {

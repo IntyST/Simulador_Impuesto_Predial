@@ -106,22 +106,22 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-    ConsultaPagosControlador consultaControlador = new ConsultaPagosControlador();
-    String cedula = txtCedulaPredio.getText();
+        ConsultaPagosControlador consultaControlador = new ConsultaPagosControlador();
+        String cedula = txtCedulaPredio.getText();
 
-    // Obtener los datos de pago del controlador
-    ArrayList<Object[]> datosPago = consultaControlador.consultaPago(cedula);
+        // Obtener los datos de pago del controlador
+        ArrayList<Object[]> datosPago = consultaControlador.consultaPago(cedula);
 
-    // Iniciar el contador
-    int contador = 1;
+        // Iniciar el contador
+        int contador = 1;
 
-    // Crear una instancia de PantallaConsultaCedula y pasar los datos
-    PantallaConsultaCedula consultaCedula = new PantallaConsultaCedula(cedula);
-    consultaCedula.setDatosPago(contador, datosPago);
+        // Crear una instancia de PantallaConsultaCedula y pasar los datos
+        PantallaConsultaCedula consultaCedula = new PantallaConsultaCedula(cedula);
+        consultaCedula.setDatosPago(contador, datosPago);
 
-    // Agregar la instancia de PantallaConsultaCedula al escritorio y mostrarla
-    escritorio.add(consultaCedula);
-    consultaCedula.setVisible(true);
+        // Agregar la instancia de PantallaConsultaCedula al escritorio y mostrarla
+        escritorio.add(consultaCedula);
+        consultaCedula.setVisible(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
