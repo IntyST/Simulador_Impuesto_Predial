@@ -137,10 +137,10 @@ public class DatosPredialesControlador {
         return null;
     }
 
-    public void actualizarDatosPrediales(String cedula, DatosPredialesModelo datosPrediales) {
+    public void actualizarDatosPredialesYPagos(String cedula, DatosPredialesModelo datosPrediales, ConsultaPagosModelo consultaPagos) {
         try {
             // Preparar la llamada al procedimiento almacenado
-            String SQL = "CALL sp_ActualizarDatosPrediales(?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "CALL sp_ActualizarDatosPredialesPagos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ejecutar = conectar.prepareStatement(SQL);
 
             // Establecer los valores de los parámetros del procedimiento almacenado
@@ -152,17 +152,21 @@ public class DatosPredialesControlador {
             ejecutar.setDouble(6, datosPrediales.getAreaConstruccionPred());
             ejecutar.setDouble(7, datosPrediales.getValorTerrenoPred());
             ejecutar.setDouble(8, datosPrediales.getValorEdificacionPred());
+            ejecutar.setDate(9, consultaPagos.getFecha_ingreso_pago());
+            ejecutar.setDate(10, consultaPagos.getFecha_vencimiento_pago());
+            ejecutar.setString(11, consultaPagos.getDescripcion_pago());
+            ejecutar.setDouble(12, consultaPagos.getSub_total_pago());
 
             // Ejecutar el procedimiento almacenado
             boolean resultado = ejecutar.execute();
 
             if (!resultado) {
-                JOptionPane.showMessageDialog(null, "Datos prediales actualizados con éxito");
+                JOptionPane.showMessageDialog(null, "Datos prediales y pagos actualizados con éxito");
             } else {
-                JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales");
+                JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales y pagos");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al actualizar los datos prediales y pagos: " + e.getMessage());
         }
     }
 

@@ -330,15 +330,11 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                         .addComponent(lblCodCastral)))
                 .addGap(41, 41, 41)
                 .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPropiedadLayout.createSequentialGroup()
-                        .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodCastral, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbtUrbano)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(178, 178, 178))
-                    .addGroup(pnlPropiedadLayout.createSequentialGroup()
-                        .addComponent(rbtRural)
-                        .addGap(59, 59, 59)))
+                    .addComponent(txtCodCastral, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtUrbano)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtRural))
+                .addGap(178, 178, 178)
                 .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAreatotal)
                     .addComponent(lblAreaConstruccion)
@@ -464,23 +460,22 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblEscudoIbarra)))
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addComponent(pnlPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(lblEscudoIbarra)))
+                .addGap(18, 18, 18)
+                .addComponent(pnlPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -568,32 +563,61 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         // Obtener la cédula ingresada por el usuario
         String cedula = txtCedula.getText();
 
-        // Obtener los datos de los campos de texto y otros componentes
+        // Verificar si la cédula está vacía
+        if (cedula.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula.");
+            return; // Salir del método si la cédula está vacía
+        }
+
+        // Obtener los demás datos ingresados por el usuario
         String codCastral = txtCodCastral.getText();
         String tipoPred = "";
+
+        // Verificar qué opción ha sido seleccionada
         if (rbtUrbano.isSelected()) {
             tipoPred = "Urbano";
         } else if (rbtRural.isSelected()) {
             tipoPred = "Rural";
         } else {
+            // Si ninguna opción ha sido seleccionada, mostrar un mensaje de error y salir del método
             JOptionPane.showMessageDialog(null, "Por favor, seleccione el tipo de propiedad.");
             return;
         }
+
         String direccion = txtDireccion.getText();
         double areaTotal = Double.parseDouble(txtAreaTotal.getText());
         double areaConstruccion = Double.parseDouble(txtAreaConstruccion.getText());
         double valorTerreno = Double.parseDouble(txtValorTerreno.getText());
         double valorEdificacion = Double.parseDouble(txtValorEdificacion.getText());
 
+        // Calcular el subtotal del pago
+        double subTotalPago;
+        if (tipoPred.equals("Urbano")) {
+            subTotalPago = (valorTerreno + valorEdificacion) * 1.10 / 1000;
+        } else { // Rural
+            subTotalPago = (valorTerreno + valorEdificacion) * 0.95 / 1000;
+        }
+
         // Crear una instancia del controlador de datos prediales
         DatosPredialesControlador datosPredialesControlador = new DatosPredialesControlador();
 
         // Crear una instancia del modelo de datos prediales
-        DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred, direccion,
-                areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
+        DatosPredialesModelo datosPrediales = new DatosPredialesModelo(codCastral, tipoPred,
+                direccion, areaTotal, areaConstruccion, valorTerreno, valorEdificacion);
 
-        // Llamar al método para actualizar los datos prediales
-        datosPredialesControlador.actualizarDatosPrediales(cedula, datosPrediales);
+        // Crear fechas de ingreso y vencimiento
+        java.sql.Date fechaIngreso = java.sql.Date.valueOf("2024-01-01");
+        java.sql.Date fechaVencimiento = java.sql.Date.valueOf("2024-12-31");
+
+        // Crear un objeto ConsultaPagosModelo y establecer sus propiedades
+        ConsultaPagosModelo consultaPagos = new ConsultaPagosModelo();
+        consultaPagos.setFecha_ingreso_pago(fechaIngreso);
+        consultaPagos.setFecha_vencimiento_pago(fechaVencimiento);
+        consultaPagos.setDescripcion_pago("Pago de impuestos predial anual " + tipoPred);
+        consultaPagos.setSub_total_pago(subTotalPago);
+
+        // Llamar al método para actualizar los datos prediales y pagos
+        datosPredialesControlador.actualizarDatosPredialesYPagos(cedula, datosPrediales, consultaPagos);
 
         // Limpiar la tabla y cargar los nuevos datos
         limpiarTabla();
