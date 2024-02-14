@@ -87,9 +87,8 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("CONSULTA DE PREDIOS");
 
+        lblTitulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblTitulo.setText("Consulta Predios de:");
-
-        lblCedula.setText("jLabel2");
 
         btnVerDatosPrediales.setText("Ver datos prediales");
         btnVerDatosPrediales.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +121,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
 
         btnCalcularPago.setText("Calcular Pago");
 
-        lblFecha.setText("jLabel1");
+        lblFecha.setText("Fecha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,14 +139,14 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                                 .addGap(55, 55, 55)
                                 .addComponent(lblTitulo)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnVerDatosPrediales)
+                                .addComponent(btnVerDatosPrediales, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnImprimir)
-                                .addGap(394, 394, 394)
+                                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(383, 383, 383)
                                 .addComponent(btnCalcularPago)
                                 .addGap(134, 134, 134)
                                 .addComponent(btnSalir)))
@@ -159,7 +158,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
-                    .addComponent(lblCedula)
+                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

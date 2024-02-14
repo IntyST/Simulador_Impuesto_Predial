@@ -53,7 +53,7 @@ public class ConsultaPagosControlador {
                 obpersona[0] = resultado.getString("COD_CASTRAL_PRED");
                 obpersona[1] = resultado.getDate("FECHA_INGRESO_PAGO");
                 obpersona[2] = resultado.getDate("FECHA_VENCIMIENTO_PAGO");
-                obpersona[3] = resultado.getString("DESCIPCION_PAGO");
+                obpersona[3] = resultado.getString("DESCRIPCION_PAGO");
                 obpersona[4] = resultado.getString("DIRECCION_PRED");
                 obpersona[5] = resultado.getDouble("SUB_TOTAL_PAGO");
                 listaObject.add(obpersona);

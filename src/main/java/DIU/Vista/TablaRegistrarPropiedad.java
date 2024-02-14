@@ -553,7 +553,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String codigoCastral = txtCodCastral.getText();
         DatosPredialesControlador pC = new DatosPredialesControlador();
-        pC.eliminarDatosPrediales(codigoCastral);
+        pC.eliminarDatosPredialesYPagos(codigoCastral); // Llama al nuevo procedimiento almacenado
         limpiarTabla();
         cargarTabla();
         limpiarEntradas();

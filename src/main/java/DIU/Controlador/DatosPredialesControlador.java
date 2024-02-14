@@ -170,22 +170,22 @@ public class DatosPredialesControlador {
         }
     }
 
-    public void eliminarDatosPrediales(String codCastralPred) {
+    public void eliminarDatosPredialesYPagos(String codCastralPred) {
         try {
-            String sql = "CALL sp_EliminarDatosPrediales(?)"; // Usar un placeholder '?' para el parámetro
+            String sql = "CALL sp_EliminarDatosPredialesYPagos(?)"; // Usar un placeholder '?' para el parámetro
             ejecutar = conectar.prepareStatement(sql);
             ejecutar.setString(1, codCastralPred); // Establecer el valor del parámetro
             int resultado = ejecutar.executeUpdate();
             if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Datos prediales eliminados con éxito");
-                System.out.println("DATOS PREDIALES ELIMINADOS CON ÉXITO");
+                JOptionPane.showMessageDialog(null, "Datos prediales y pagos eliminados con éxito");
+                System.out.println("DATOS PREDIALES Y PAGOS ELIMINADOS CON ÉXITO");
                 ejecutar.close();
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron datos prediales para eliminar");
-                System.out.println("NO SE ENCONTRARON DATOS PREDIALES PARA ELIMINAR");
+                JOptionPane.showMessageDialog(null, "No se encontraron datos prediales o pagos para eliminar");
+                System.out.println("NO SE ENCONTRARON DATOS PREDIALES O PAGOS PARA ELIMINAR");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar datos prediales: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al eliminar datos prediales y pagos: " + e.getMessage());
             System.out.println("ERROR SQL: " + e);
         }
     }
