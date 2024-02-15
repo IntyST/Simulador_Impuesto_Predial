@@ -34,6 +34,16 @@ public class PersonaModelo {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public PersonaModelo(String cedula, String nombres, String apellidos, String correo, String telefono, Date fechaNacimiento) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    
+
     public PersonaModelo(String cedula, String nombres, String apellidos) {
         this.cedula = cedula;
         this.nombres = nombres;

@@ -40,21 +40,25 @@ public class PersonaControlador {
     //TRANSACCIONABILIDAD
     public void crearPersona(PersonaModelo p) {
         try {
-            String SQL = "call sp_CrearPersona('" + p.getNombres() + "',"
-                    + "'" + p.getApellidos() + "',"
-                    + "'" + p.getCedula() + "',"
-                    + "'" + p.getCorreo() + "',"
-                    + "'" + p.getTelefono() + "',"
-                    + "'" + p.getClass() + "')";
-            ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
+            String SQL = "{call sp_InsertarPersona(?, ?, ?, ?, ?, ?)}";
+            CallableStatement ejecutar = conectado.prepareCall(SQL);
+            ejecutar.setString(1, p.getCedula());
+            ejecutar.setString(2, p.getNombres());
+            ejecutar.setString(3, p.getApellidos());
+            ejecutar.setString(4, p.getCorreo());
+            ejecutar.setString(5, p.getTelefono());
+            ejecutar.setDate(6, new java.sql.Date(p.getFechaNacimiento().getTime()));
+
             int resultado = ejecutar.executeUpdate();
+
             if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "PERSONA CREADA CON ÉXITO");
-            } else {
-                JOptionPane.showMessageDialog(null, "REVISAR LA INFORMACIÓN INGRESADA");
+                JOptionPane.showMessageDialog(null, "Persona Creada con Éxito");
+                System.out.println("PERSONA CREADA CON ÉXITO");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Revise los Datos ingresados");
+            System.out.println("REVISE LOS DATOS INGRESADOS");
+            ex.printStackTrace();
         }
     }
 
@@ -63,23 +67,27 @@ public class PersonaControlador {
 
         try {
             String sql = "call sp_listaPersonas();";
-            ejecutar = (PreparedStatement) conectado.prepareCall(sql);
-            resultado = ejecutar.executeQuery();
+            CallableStatement cs = conectado.prepareCall(sql);
+            resultado = cs.executeQuery();
+
             int cont = 1;
             while (resultado.next()) {
-                Object[] obpersona = new Object[6];
-                for (int i = 1; i < 6; i++) {
-                    obpersona[i] = resultado.getObject(i + 1);
-                }
-                obpersona[0] = cont;
-                listaObject.add(obpersona);
-                cont++;
+                Object[] fila = new Object[7];
+                fila[0] = cont++;
+                fila[1] = resultado.getString("CEDULA_PER");
+                fila[2] = resultado.getString("NOMBRES_PER");
+                fila[3] = resultado.getString("APELLIDOS_PER");
+                fila[4] = resultado.getString("CORREO_PER");
+                fila[5] = resultado.getString("TELEFONO_PER");
+                fila[6] = resultado.getDate("FECHA_NACIMIENTO_PER");
+                listaObject.add(fila);
             }
-            ejecutar.close();
+
+            cs.close();
             return listaObject;
 
         } catch (SQLException e) {
-            System.out.println("ERROR SQL CARGA PERSONAS");
+            JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
         }
 
         return null;

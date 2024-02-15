@@ -31,7 +31,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         menuPropiedades = new javax.swing.JMenu();
         opLPropiedades = new javax.swing.JMenuItem();
         menuPropietarios = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        opLPropietarios = new javax.swing.JMenuItem();
         menuCuentas = new javax.swing.JMenu();
         MenuAdmin = new javax.swing.JMenu();
         opLCerrar = new javax.swing.JMenuItem();
@@ -63,8 +63,13 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         menuPropietarios.setText("Gestión Propietarios");
 
-        jMenuItem2.setText("Propietarios");
-        menuPropietarios.add(jMenuItem2);
+        opLPropietarios.setText("Propietarios");
+        opLPropietarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opLPropietariosActionPerformed(evt);
+            }
+        });
+        menuPropietarios.add(opLPropietarios);
 
         jMenuBar1.add(menuPropietarios);
 
@@ -114,6 +119,12 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_opLCerrarActionPerformed
 
+    private void opLPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLPropietariosActionPerformed
+        TablablaRegistrarCiudadanos Propietarios = new TablablaRegistrarCiudadanos();
+        escritorio.add(Propietarios);
+        Propietarios.show();
+    }//GEN-LAST:event_opLPropietariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,11 +165,11 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu MenuAdmin;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu menuCuentas;
     private javax.swing.JMenu menuPropiedades;
     private javax.swing.JMenu menuPropietarios;
     private javax.swing.JMenuItem opLCerrar;
     private javax.swing.JMenuItem opLPropiedades;
+    private javax.swing.JMenuItem opLPropietarios;
     // End of variables declaration//GEN-END:variables
 }

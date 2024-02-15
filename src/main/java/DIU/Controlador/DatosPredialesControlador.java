@@ -39,6 +39,7 @@ public class DatosPredialesControlador {
 
     public void crearDatosPredialesYPagos(String cedula, DatosPredialesModelo datosPrediales, ConsultaPagosModelo consultaPagos) {
         try {
+            
             String SQL = "CALL sp_InsertarDatosPredialesYPagos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ejecutar = conectar.prepareStatement(SQL);
 
