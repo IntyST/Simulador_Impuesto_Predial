@@ -6,7 +6,9 @@ package DIU.Vista;
 
 import DIU.Controlador.PersonaControlador;
 import DIU.Modelo.PersonaModelo;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class Lista_de_ciudadanos extends javax.swing.JInternalFrame {
 ArrayList<PersonaModelo> listaPersonaModelo=new ArrayList<>();
 DefaultTableModel modelo = new DefaultTableModel();
+   // private Date date;
     /**
      * Creates new form Lista_de_Usuarios
      */
@@ -77,14 +80,32 @@ DefaultTableModel modelo = new DefaultTableModel();
         btnModificar = new javax.swing.JButton();
         tbnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        dcFechaN = new com.toedter.calendar.JDateChooser();
         lblfechaN = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        txtfechaN = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Gestor de ciudadanos ");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         tblPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,9 +153,16 @@ DefaultTableModel modelo = new DefaultTableModel();
         tbnEliminar.setText("Eliminar");
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         lblfechaN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblfechaN.setText("Fecha de nacimiento");
+
+        btnBuscar.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,7 +174,7 @@ DefaultTableModel modelo = new DefaultTableModel();
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(24, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombres)
                             .addComponent(lblApellidos)
@@ -161,15 +189,17 @@ DefaultTableModel modelo = new DefaultTableModel();
                                 .addComponent(txtApellidos)
                                 .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(dcFechaN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtfechaN, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                 .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tbnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBuscar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tbnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(56, 56, 56))))
         );
         layout.setVerticalGroup(
@@ -209,11 +239,13 @@ DefaultTableModel modelo = new DefaultTableModel();
                         .addComponent(btnLimpiar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblfechaN)
-                            .addComponent(dcFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtfechaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(btnBuscar)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
@@ -226,13 +258,7 @@ DefaultTableModel modelo = new DefaultTableModel();
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
-        PersonaModelo pM = new PersonaModelo(0, 
-        txtNombres.getText(),
-        txtApellidos.getText(),
-        txtCedula.getText(),
-        txtCorreo.getText(),
-        txtTelefono.getText(),
-                dcFechaN.getDate());      
+        PersonaModelo pM = new PersonaModelo(ERROR, title, title, title, title, title, fechaNacimiento);
         PersonaControlador pC=new PersonaControlador();
         pC.crearPersona(pM);
         listaPersonaModelo.add(pM);
@@ -242,12 +268,49 @@ DefaultTableModel modelo = new DefaultTableModel();
         
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+       PersonaControlador pC= new PersonaControlador();
+      ArrayList<Object[]> listaP = pC.datosPersona();
+        for (Object[] filas : listaP) {
+            modelo.addRow(filas);
+            
+        }
+        tblPersona.setModel(modelo);
+        limpiarTabla();
+        cargarTabla();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtCedula.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        //dcFechaN.setDate(date);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+ public void limpiarTabla(){
+     int a =modelo.getRowCount()-1;
+     
+     for (int i = a; i >= 0; i--) {
+         
+         modelo.removeRow(i);
+     }
+ } 
+ private void cargarTabla(){
+     PersonaControlador pC= new PersonaControlador();
+      ArrayList<Object[]> listaP = pC.datosPersona();
+        for (Object[] filas : listaP) {
+            modelo.addRow(filas);
+            
+        }
+        tblPersona.setModel(modelo);
+ }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
-    private com.toedter.calendar.JDateChooser dcFechaN;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCedula;
@@ -262,5 +325,6 @@ DefaultTableModel modelo = new DefaultTableModel();
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtfechaN;
     // End of variables declaration//GEN-END:variables
 }

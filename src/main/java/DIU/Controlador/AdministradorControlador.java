@@ -21,18 +21,17 @@ public class AdministradorControlador {
     PreparedStatement ejecutar;
     ResultSet resultado;
     
-    public boolean inisiarSesion(String CEDULA_PER, String CLAVE_ADMIN) {
+    public boolean inisiarSesion(String usuario, String contrasenia) {
         try {
-            String SQL = "SELECT ID_ADMIN "
-                    + "FROM ADMINISTRADOR "
-                    + "WHERE CEDULA_PER = '" + CEDULA_PER + "' AND Contrasenia = '" + CLAVE_ADMIN + "';";
+            String SQL = "SELECT * FROM ADMINISTRADOR "
+                    + "WHERE cadministrador = '" + usuario + "' AND Contrasenia = '" + contrasenia + "';";
             ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
             ResultSet res = ejecutar.executeQuery();
 
             if (res.next()) {
 
-                System.out.println("Bienvenido " + CEDULA_PER);
-                JOptionPane.showMessageDialog(null, "Bienvenido " + CEDULA_PER);
+                System.out.println("Bienvenido " + usuario);
+                JOptionPane.showMessageDialog(null, "Bienvenido " + usuario);
 
                 return true;
             } else {

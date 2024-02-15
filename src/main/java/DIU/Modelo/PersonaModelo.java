@@ -31,7 +31,8 @@ public class PersonaModelo {
         this.apellidos = apellidos;
     }
     
-    public PersonaModelo( int idpersona, String cedula, String nombres, String apellidos, String correo, String telefono, Date fechaNacimiento) {
+    public PersonaModelo( int idpersona, String cedula, String nombres, 
+            String apellidos, String correo, String telefono, Date fechaNacimiento) {
         this.idpersona = idpersona;
         this.cedula = cedula;
         this.nombres = nombres;

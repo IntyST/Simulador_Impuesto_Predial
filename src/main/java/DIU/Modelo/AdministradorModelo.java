@@ -12,19 +12,23 @@ public class AdministradorModelo {
     private int id_administrador;
     private String nombres;
     private String apellidos;
-    private int cedula;
+    private String cedula;
     private String usuario;
     private String clave;
     
     public AdministradorModelo(){
         
     }
-    public AdministradorModelo(int id_administrador,String nombres,String apellidos
-            ,int cedula,String usuario,String clave){
-        this.id_administrador=id_administrador;
-        
-        
+
+    public AdministradorModelo(int id_administrador, String nombres, String apellidos, String cedula, String usuario, String clave) {
+        this.id_administrador = id_administrador;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.cedula = cedula;
+        this.usuario = usuario;
+        this.clave = clave;
     }
+   
 
     /**
      * @return the id_administrador
@@ -68,19 +72,15 @@ public class AdministradorModelo {
         this.apellidos = apellidos;
     }
 
-    /**
-     * @return the cedula
-     */
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    /**
-     * @param cedula the cedula to set
-     */
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
+
+
 
     /**
      * @return the usuario

@@ -11,6 +11,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="internalFrameActivated" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameActivated"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -33,7 +36,7 @@
                       <Component id="jScrollPane1" min="-2" pref="672" max="-2" attributes="0"/>
                       <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblNombres" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblApellidos" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -50,17 +53,20 @@
                               <Component id="txtCedula" alignment="0" pref="201" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="dcFechaN" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtfechaN" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtTelefono" alignment="0" pref="200" max="32767" attributes="0"/>
                               <Component id="txtCorreo" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnLimpiar" max="32767" attributes="0"/>
-                          <Component id="btnModificar" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnCrear" alignment="1" max="32767" attributes="0"/>
-                          <Component id="tbnEliminar" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnLimpiar" max="32767" attributes="0"/>
+                              <Component id="btnModificar" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnCrear" alignment="1" max="32767" attributes="0"/>
+                              <Component id="tbnEliminar" alignment="1" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
@@ -114,14 +120,16 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblfechaN" min="-2" max="-2" attributes="0"/>
-                          <Component id="dcFechaN" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblfechaN" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtfechaN" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="260" max="-2" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="272" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -224,8 +232,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dcFechaN">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblfechaN">
       <Properties>
@@ -234,6 +243,13 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBuscar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtfechaN">
     </Component>
   </SubComponents>
 </Form>

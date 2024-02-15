@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package DIU.Vista;
+import DIU.Controlador.loginControlador;
+import DIU.Modelo.AdministradorModelo;
+import DIU.Modelo.loginModelo;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,14 +35,17 @@ public class InicioSecion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        userTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        passTxt = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        userTxt = new javax.swing.JTextField();
+        passTxt = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        escritorio.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("INICIAR SECION");
@@ -48,27 +55,11 @@ public class InicioSecion extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("USUARIO");
 
-        userTxt.setForeground(new java.awt.Color(204, 204, 204));
-        userTxt.setText("Ingrese su nombre de usuario");
-        userTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTxtActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("CONTRASEÑA");
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-
-        passTxt.setForeground(new java.awt.Color(204, 204, 204));
-        passTxt.setText("jPasswordField1");
-        passTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passTxtActionPerformed(evt);
-            }
-        });
 
         btnEntrar.setBackground(new java.awt.Color(0, 102, 102));
         btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -81,6 +72,37 @@ public class InicioSecion extends javax.swing.JFrame {
         });
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+
+        userTxt.setForeground(new java.awt.Color(204, 204, 204));
+        userTxt.setText("Ingrese su nombre de usuario");
+        userTxt.setBorder(null);
+        userTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userTxtMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                userTxtMousePressed(evt);
+            }
+        });
+        userTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userTxtActionPerformed(evt);
+            }
+        });
+
+        passTxt.setForeground(new java.awt.Color(204, 204, 204));
+        passTxt.setText("********");
+        passTxt.setBorder(null);
+        passTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                passTxtMousePressed(evt);
+            }
+        });
+        passTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passTxtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -99,11 +121,11 @@ public class InicioSecion extends javax.swing.JFrame {
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(userTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(jSeparator1)
-                            .addComponent(passTxt)
                             .addComponent(jSeparator2)
-                            .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(passTxt))))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
@@ -127,7 +149,7 @@ public class InicioSecion extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,9 +168,33 @@ public class InicioSecion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-          if (userTxt.getText().equals("Ingrese su nombre de usuario")) {
+        loginModelo LM=new loginModelo();
+        LM.setCedulaU(userTxt.getText());
+        LM.setContrasenia(passTxt.getText());
+        loginControlador lc=new loginControlador();
+        lc.inisiarSesion(LM);
+        this.dispose();
+       
+       
+    }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
+       
+    }//GEN-LAST:event_userTxtActionPerformed
+
+    private void passTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTxtActionPerformed
+        
+    }//GEN-LAST:event_passTxtActionPerformed
+
+    private void userTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxtMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userTxtMouseClicked
+
+    private void userTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxtMousePressed
+        // TODO add your handling code here:
+        if (userTxt.getText().equals("Ingrese su nombre de usuario")) {
             userTxt.setText("");
             userTxt.setForeground(Color.black);
         }
@@ -156,29 +202,21 @@ public class InicioSecion extends javax.swing.JFrame {
             passTxt.setText("********");
             passTxt.setForeground(Color.gray);
         }
-    }//GEN-LAST:event_userTxtActionPerformed
+    }//GEN-LAST:event_userTxtMousePressed
 
-    private void passTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTxtActionPerformed
+    private void passTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passTxtMousePressed
         // TODO add your handling code here:
         if (String.valueOf(passTxt.getPassword()).equals("********")) {
             passTxt.setText("");
-            passTxt.setForeground(Color.black);
+            userTxt.setForeground(Color.black);
         }
         if (userTxt.getText().isEmpty()) {
             userTxt.setText("Ingrese su nombre de usuario");
             userTxt.setForeground(Color.gray);
         }
-    }//GEN-LAST:event_passTxtActionPerformed
+    }//GEN-LAST:event_passTxtMousePressed
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
-        MenuPrincipal PAd=new MenuPrincipal();
-        PAd.setVisible(true);
-        this.setVisible(false);
-       
-        
-    }//GEN-LAST:event_btnEntrarActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

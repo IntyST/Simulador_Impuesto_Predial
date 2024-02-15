@@ -41,7 +41,7 @@ public class PersonaControlador {
     //TRANSACCIONABILIDAD
     public void crearPersona(PersonaModelo p) {
         try {
-            String SQL = "call sp_CrearPersona('" + p.getNombres() + "',"
+            String SQL = "call CrearPersona('" + p.getNombres() + "',"
                     + "'" + p.getApellidos() + "',"
                     + "'" + p.getCedula() + "',"
                     + "'" + p.getCorreo() + "',"
@@ -51,6 +51,7 @@ public class PersonaControlador {
             int resultado = ejecutar.executeUpdate();
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(null, "PERSONA CREADA CON ÉXITO");
+            ejecutar.close();
             } else {
                 JOptionPane.showMessageDialog(null, "REVISAR LA INFORMACIÓN INGRESADA");
             }
@@ -68,8 +69,8 @@ public class PersonaControlador {
             resultado = ejecutar.executeQuery();
             int cont = 1;
             while (resultado.next()) {
-                Object[] obpersona = new Object[6];
-                for (int i = 1; i < 6; i++) {
+                Object[] obpersona = new Object[7];
+                for (int i = 1; i < 7; i++) {
                     obpersona[i] = resultado.getObject(i + 1);
                 }
                 obpersona[0] = cont;
@@ -80,7 +81,8 @@ public class PersonaControlador {
             return listaObject;
 
         } catch (SQLException e) {
-            System.out.println("ERROR SQL CARGA PERSONAS");
+            JOptionPane.showMessageDialog(null  , "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
+            //System.out.println("ERROR SQL CARGA PERSONAS");
         }
 
         return null;
