@@ -1,4 +1,4 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_InsertarDatosPredialesPagos`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_InsertarDatosPredialesYPagos`(
     IN cedulaParam VARCHAR(10),
     IN codCastralParam VARCHAR(45),
     IN tipoPredParam VARCHAR(15),
@@ -7,10 +7,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_InsertarDatosPredialesPagos`(
     IN areaConstruccionParam DOUBLE,
     IN valorTerrenoParam DOUBLE,
     IN valorEdificacionParam DOUBLE,
-    IN fechaIngresoPago DATE,
-    IN fechaVencimientoPago DATE,
-    IN descripcionPago VARCHAR(75),
-    IN subTotalPago DOUBLE
+    IN fechaIngresoPagoParam DATE,
+    IN fechaVencimientoPagoParam DATE,
+    IN descripcionPagoParam VARCHAR(75),
+    IN subTotalPagoParam DOUBLE
 )
 BEGIN
     DECLARE idPersona INT;
@@ -28,9 +28,9 @@ BEGIN
     VALUES (idPersona, codCastralParam, tipoPredParam, direccionPredParam, areaTotalParam, areaConstruccionParam, valorTerrenoParam, valorEdificacionParam, valorComercial);
 
     -- Obtener el ID_PRED del predio recién insertado
-    SELECT LAST_INSERT_ID() INTO idPredio;
+    SET idPredio = LAST_INSERT_ID();
 
     -- Insertar los datos de pago asociados al predio
-    INSERT INTO CONSULTAPAGOS (ID_PRED, FECHA_INGRESO_PAGO, FECHA_VENCIMIENTO_PAGO, DESCIPCION_PAGO, SUB_TOTAL_PAGO)
-    VALUES (idPredio, fechaIngresoPago, fechaVencimientoPago, descripcionPago, subTotalPago);
+    INSERT INTO CONSULTAPAGOS (ID_PRED, FECHA_INGRESO_PAGO, FECHA_VENCIMIENTO_PAGO, DESCRIPCION_PAGO, SUB_TOTAL_PAGO)
+    VALUES (idPredio, fechaIngresoPagoParam, fechaVencimientoPagoParam, descripcionPagoParam, subTotalPagoParam);
 END
