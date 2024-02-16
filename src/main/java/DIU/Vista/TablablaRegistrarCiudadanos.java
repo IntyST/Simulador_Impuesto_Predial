@@ -8,6 +8,7 @@ import DIU.Controlador.PersonaControlador;
 import DIU.Modelo.PersonaModelo;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -109,6 +110,11 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESE LOS SIGUIENTES DATOS"));
 
@@ -130,12 +136,27 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
 
         tbnEliminar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tbnEliminar.setText("Eliminar");
+        tbnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbnEliminarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         txtFecha.setDateFormatString("yyyy-MM-dd");
 
@@ -258,6 +279,11 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPersona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPersonaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPersona);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -326,6 +352,82 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarEntradas();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // Obtener la cédula del campo de texto
+        String cedula = txtCedula.getText();
+
+        // Crear una instancia de PersonaModelo con la cédula
+        PersonaModelo personaBuscada = new PersonaModelo();
+        personaBuscada.setCedula(cedula);
+
+        // Crear una instancia de PersonaControlador
+        PersonaControlador controlador = new PersonaControlador();
+
+        // Llamar al método recuperarDatosPersona
+        controlador.recuperarDatosPersona(personaBuscada);
+
+        // Limpiar la tabla
+        limpiarTabla();
+
+        // Agregar la persona buscada a la lista de personas
+        listaPersonaModelo.clear();
+        listaPersonaModelo.add(personaBuscada);
+
+        // Llamar al método setDatos para agregar las personas a la tabla
+        setDatos();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonaMouseClicked
+        DefaultTableModel dtm = (DefaultTableModel) tblPersona.getModel();
+        int filaSeleccionada = tblPersona.getSelectedRow();
+        if (filaSeleccionada != -1) { // Verifica si se ha seleccionado una fila válida
+            // Obtener los datos de la fila seleccionada y establecerlos en los campos correspondientes
+            txtCedula.setText((String) dtm.getValueAt(filaSeleccionada, 3));
+            txtNombres.setText((String) dtm.getValueAt(filaSeleccionada, 1));
+            txtApellidos.setText((String) dtm.getValueAt(filaSeleccionada, 2));
+            txtCorreo.setText((String) dtm.getValueAt(filaSeleccionada, 4));
+            txtTelefono.setText((String) dtm.getValueAt(filaSeleccionada, 5));
+            txtFecha.setDate((Date) dtm.getValueAt(filaSeleccionada, 6));
+        }
+    }//GEN-LAST:event_tblPersonaMouseClicked
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // Obtener los datos de los campos de texto u otros componentes de entrada
+        String cedula = txtCedula.getText();
+        String nombres = txtNombres.getText();
+        String apellidos = txtApellidos.getText();
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        Date fechaNacimiento = txtFecha.getDate();
+
+        // Crear una instancia de PersonaModelo con los datos obtenidos
+        PersonaModelo personaModificada = new PersonaModelo(cedula, nombres, apellidos, correo, telefono, fechaNacimiento);
+
+        // Crear una instancia de PersonaControlador
+        PersonaControlador controlador = new PersonaControlador();
+
+        // Llamar al método actualizarPersona
+        controlador.actualizarPersona(personaModificada);
+
+        // Actualizar la tabla
+        limpiarTabla();
+        cargarTabla();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        limpiarTabla();
+        cargarTabla();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void tbnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnEliminarActionPerformed
+        String cedula = txtCedula.getText();
+        PersonaControlador pC = new PersonaControlador();
+        pC.eliminarPersonaPorCedula(cedula); // Llama al nuevo procedimiento almacenado
+        limpiarTabla();
+        cargarTabla();
+        limpiarEntradas();
+    }//GEN-LAST:event_tbnEliminarActionPerformed
     public void limpiarTabla() {
         int a = modelo.getRowCount() - 1;
 
