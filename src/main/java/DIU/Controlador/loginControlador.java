@@ -4,8 +4,8 @@
  */
 package DIU.Controlador;
 
-//import DIU.Modelo.PersonaModelo;
-import DIU.Modelo.AdministradorModelo;
+
+
 import DIU.Modelo.loginModelo;
 import DIU.Vista.MenuPrincipal;
 import java.sql.Connection;
@@ -24,7 +24,7 @@ public class loginControlador {
     Connection conectado = (Connection) conectar.conectar();
     PreparedStatement ejecutar;
     ResultSet resultado;//para leer u obtener un dato
-    int res;//para escribir
+    //int res;para escribir
 
     /**
      * @return the usuario
@@ -42,23 +42,25 @@ public class loginControlador {
    
     public boolean inisiarSesion(loginModelo p) {
         try {
-            String SQL = "CALL ValidarInicioSesion('"+p.getCedulaU()+"', '"+p.getContrasenia()+"');";
-            ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
-            ResultSet res = ejecutar.executeQuery(SQL);
+            String SQL = "SELECT *FROM administrador "
+                    + "WHERE nadministrador = ? AND contrasenia = ? ";
 
-            if (res.next()) {
+            //ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
+        ejecutar = conectado.prepareStatement(SQL);
+        ejecutar.setString(1, p.getCedulaU());
+        ejecutar.setString(2, p.getContrasenia());
+        
+            ResultSet resultado = ejecutar.executeQuery();
+
+            if (resultado.next()) {
 
                 //System.out.println("Bienvenido " + Usuario);
                 JOptionPane.showMessageDialog(null, "Bienvenido " + p.getCedulaU());
-                MenuPrincipal MP = new MenuPrincipal();
-                MP.setVisible(true);
-                
-                res.close();
+                MenuPrincipal Mp = new MenuPrincipal();
+                Mp.setVisible(true);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecto");
-                MenuPrincipal MP = new MenuPrincipal();
-                MP.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecto"); 
                 return false;
                 
             }
@@ -67,8 +69,8 @@ public class loginControlador {
             JOptionPane.showMessageDialog(null, "error de coneccion" + e);
             return false;
 }
-
+}   
 }
+
 
    
-}

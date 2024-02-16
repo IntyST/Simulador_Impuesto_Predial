@@ -4,7 +4,7 @@
  */
 package DIU.Vista;
 import DIU.Controlador.loginControlador;
-import DIU.Modelo.AdministradorModelo;
+
 import DIU.Modelo.loginModelo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -175,8 +175,7 @@ public class InicioSecion extends javax.swing.JFrame {
         LM.setContrasenia(passTxt.getText());
         loginControlador lc=new loginControlador();
         lc.inisiarSesion(LM);
-        this.dispose();
-       
+        
        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -208,7 +207,7 @@ public class InicioSecion extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (String.valueOf(passTxt.getPassword()).equals("********")) {
             passTxt.setText("");
-            userTxt.setForeground(Color.black);
+            userTxt.setForeground(Color.BLACK);
         }
         if (userTxt.getText().isEmpty()) {
             userTxt.setText("Ingrese su nombre de usuario");

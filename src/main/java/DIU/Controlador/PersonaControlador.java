@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -40,16 +40,17 @@ public class PersonaControlador {
     }
     //TRANSACCIONABILIDAD
     public void crearPersona(PersonaModelo p) {
+       //ArrayList<Object[]> listaTota1Registros = new ArrayList<>();
         try {
-            String SQL = "call CrearPersona('" + p.getNombres() + "',"
+            String SQL = "call CrearPersona('" + p.getCedula() + "',"
+                    + "'" + p.getNombres() + "',"
                     + "'" + p.getApellidos() + "',"
-                    + "'" + p.getCedula() + "',"
                     + "'" + p.getCorreo() + "',"
                     + "'" + p.getTelefono() + "',"
                     + "'" + p.getFechaNacimiento() + "')";
             ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
-            int resultado = ejecutar.executeUpdate();
-            if (resultado > 0) {
+            int res = ejecutar.executeUpdate();
+            if (res > 0) {
                 JOptionPane.showMessageDialog(null, "PERSONA CREADA CON ÉXITO");
             ejecutar.close();
             } else {
@@ -57,9 +58,12 @@ public class PersonaControlador {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
+            
         }
     }
 
+   
+    
     public ArrayList<Object[]> datosPersona() {
         ArrayList<Object[]> listaObject = new ArrayList<>();
 

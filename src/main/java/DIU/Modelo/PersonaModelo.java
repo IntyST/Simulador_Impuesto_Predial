@@ -25,11 +25,6 @@ public class PersonaModelo {
         
     }
 
-    public PersonaModelo(String cedula, String nombres, String apellidos) {
-        this.cedula = cedula;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-    }
     
     public PersonaModelo( int idpersona, String cedula, String nombres, 
             String apellidos, String correo, String telefono, Date fechaNacimiento) {

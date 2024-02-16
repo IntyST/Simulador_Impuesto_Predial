@@ -27,8 +27,8 @@ DefaultTableModel modelo = new DefaultTableModel();
         setModelo();
     }
     public void setModelo(){
-        String [] cabecera ={ "Nro.","Nombres","Apellidos",
-            "Cedula",
+        String [] cabecera ={ "Nro.","Cedula","Nombre",
+            "Apellido",
             "Correo Electronico",
             "Telefono",
             "Fecha de Nacimiento"};
@@ -41,9 +41,9 @@ DefaultTableModel modelo = new DefaultTableModel();
         int nro=1;
         for (PersonaModelo datos:listaPersonaModelo) {
             Datosfila[0]=nro;
-            Datosfila[1]=datos.getNombres();
-            Datosfila[2]=datos.getApellidos();
-            Datosfila[3]=datos.getCedula();
+            Datosfila[1]=datos.getCedula();
+            Datosfila[2]=datos.getNombres();
+            Datosfila[3]=datos.getApellidos();
             Datosfila[4]=datos.getCorreo();
             Datosfila[5]=datos.getTelefono();
             Datosfila[6]=datos.getFechaNacimiento();
@@ -66,12 +66,12 @@ DefaultTableModel modelo = new DefaultTableModel();
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPersona = new javax.swing.JTable();
+        lblCedula = new javax.swing.JLabel();
         lblNombres = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
-        lblCedula = new javax.swing.JLabel();
+        txtCedula = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
-        txtCedula = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
         lbltelefono = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
@@ -82,7 +82,7 @@ DefaultTableModel modelo = new DefaultTableModel();
         btnLimpiar = new javax.swing.JButton();
         lblfechaN = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        txtfechaN = new javax.swing.JTextField();
+        txtFecha = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setIconifiable(true);
@@ -120,18 +120,18 @@ DefaultTableModel modelo = new DefaultTableModel();
         ));
         jScrollPane1.setViewportView(tblPersona);
 
+        lblCedula.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCedula.setText("Cedula");
+
         lblNombres.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNombres.setText("Nombres");
 
         lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblApellidos.setText("Apellidos");
 
-        lblCedula.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblCedula.setText("Cedula");
-
-        txtApellidos.addActionListener(new java.awt.event.ActionListener() {
+        txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidosActionPerformed(evt);
+                txtNombresActionPerformed(evt);
             }
         });
 
@@ -164,6 +164,8 @@ DefaultTableModel modelo = new DefaultTableModel();
 
         btnBuscar.setText("Buscar");
 
+        txtFecha.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,22 +178,20 @@ DefaultTableModel modelo = new DefaultTableModel();
                         .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCedula)
                             .addComponent(lblNombres)
                             .addComponent(lblApellidos)
-                            .addComponent(lblCedula)
                             .addComponent(lblCorreo)
                             .addComponent(lbltelefono)
                             .addComponent(lblfechaN))
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNombres)
-                                .addComponent(txtApellidos)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtfechaN, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(txtNombres)
+                            .addComponent(txtTelefono)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtApellidos)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBuscar)
@@ -209,19 +209,19 @@ DefaultTableModel modelo = new DefaultTableModel();
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNombres)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblCedula)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(btnCrear)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedula)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblApellidos)
+                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,16 +235,20 @@ DefaultTableModel modelo = new DefaultTableModel();
                     .addComponent(lbltelefono))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(btnLimpiar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(btnLimpiar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(lblfechaN)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(btnBuscar)
+                        .addGap(39, 39, 39))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblfechaN)
-                            .addComponent(txtfechaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(btnBuscar)
-                .addGap(39, 39, 39)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -252,38 +256,46 @@ DefaultTableModel modelo = new DefaultTableModel();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
+    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosActionPerformed
+    }//GEN-LAST:event_txtNombresActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+    //Date fechaNacimiento = null;
         // TODO add your handling code here:
-        PersonaModelo pM = new PersonaModelo(ERROR, title, title, title, title, title, fechaNacimiento);
+        PersonaModelo pM = new PersonaModelo(0, 
+                txtCedula.getText(), 
+                txtNombres.getText(), 
+                txtApellidos.getText(), 
+                txtCorreo.getText(),
+                txtTelefono.getText(), 
+                txtFecha.getDate());
         PersonaControlador pC=new PersonaControlador();
         pC.crearPersona(pM);
         listaPersonaModelo.add(pM);
         setDatos();
-        tblPersona.setModel(modelo); 
+        limpiarTabla();
+        //cargarTabla();
         
         
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-       PersonaControlador pC= new PersonaControlador();
+       /*PersonaControlador pC= new PersonaControlador();
       ArrayList<Object[]> listaP = pC.datosPersona();
         for (Object[] filas : listaP) {
             modelo.addRow(filas);
             
         }
         tblPersona.setModel(modelo);
-        limpiarTabla();
-        cargarTabla();
+        limpiarTabla();*/
+        //cargarTabla();
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtCedula.setText("");
         txtNombres.setText("");
         txtApellidos.setText("");
-        txtCedula.setText("");
         txtCorreo.setText("");
         txtTelefono.setText("");
         //dcFechaN.setDate(date);
@@ -323,8 +335,8 @@ DefaultTableModel modelo = new DefaultTableModel();
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
+    private com.toedter.calendar.JDateChooser txtFecha;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtfechaN;
     // End of variables declaration//GEN-END:variables
 }
