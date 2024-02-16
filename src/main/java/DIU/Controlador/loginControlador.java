@@ -42,8 +42,7 @@ public class loginControlador {
    
     public boolean inisiarSesion(loginModelo p) {
         try {
-            String SQL = "SELECT *FROM administrador "
-                    + "WHERE nadministrador = ? AND contrasenia = ? ";
+            String SQL = "{CALL sp_ValidarLogin(?, ?)}";
 
             //ejecutar = (PreparedStatement) conectado.prepareCall(SQL);
         ejecutar = conectado.prepareStatement(SQL);
