@@ -29,7 +29,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         capa5 = new javax.swing.JPanel();
         pnlAdmin3 = new javax.swing.JPanel();
-        lblAdmin3 = new javax.swing.JLabel();
+        lblAdmin = new javax.swing.JLabel();
         pnlConsulta = new javax.swing.JPanel();
         lblConsulta = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
@@ -42,13 +42,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         pnlAdmin3.setBackground(new java.awt.Color(0, 102, 102));
 
-        lblAdmin3.setBackground(new java.awt.Color(255, 255, 255));
-        lblAdmin3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblAdmin3.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdmin3.setText("   Administrador");
-        lblAdmin3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        lblAdmin.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblAdmin.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin.setText("   Administrador");
+        lblAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAdmin3lblAdminMouseClicked(evt);
+                lblAdminlblAdminMouseClicked(evt);
             }
         });
 
@@ -56,11 +56,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pnlAdmin3.setLayout(pnlAdmin3Layout);
         pnlAdmin3Layout.setHorizontalGroup(
             pnlAdmin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAdmin3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addComponent(lblAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
         );
         pnlAdmin3Layout.setVerticalGroup(
             pnlAdmin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAdmin3, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addComponent(lblAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
         );
 
         pnlConsulta.setBackground(new java.awt.Color(0, 102, 102));
@@ -166,11 +166,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblAdmin3lblAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdmin3lblAdminMouseClicked
-        PantallaAdministrador pantallaAdmin  = new PantallaAdministrador();
-        pantallaAdmin.setVisible(true);
+    private void lblAdminlblAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdminlblAdminMouseClicked
+        InicioSecion login  = new InicioSecion();
+        login.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_lblAdmin3lblAdminMouseClicked
+    }//GEN-LAST:event_lblAdminlblAdminMouseClicked
 
     private void lblConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultaMouseClicked
         PantallaConsultaPredios pantallaConsulta = new PantallaConsultaPredios();
@@ -219,7 +219,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel capa5;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JLabel lblAdmin3;
+    private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblConsulta;
     private javax.swing.JLabel lblGADM;
     private javax.swing.JLabel lblImpuestoPredial;

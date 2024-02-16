@@ -4,6 +4,8 @@
  */
 package DIU.Vista;
 
+import DIU.Modelo.PersonaModelo;
+
 /**
  *
  * @author Usuario
@@ -13,8 +15,19 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form MenuAdministrador
      */
+    private PersonaModelo persona;
+
+    // Constructor sin parámetros
     public PantallaAdministrador() {
         initComponents();
+    }
+
+    // Constructor con parámetro PersonaModelo
+    public PantallaAdministrador(PersonaModelo persona) {
+        this.persona = persona;
+        initComponents();
+        lblNombres.setText(persona.getNombres());
+        lblApellidos.setText(persona.getApellidos());
     }
 
     /**
@@ -35,6 +48,8 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         menuCuentas = new javax.swing.JMenu();
         MenuAdmin = new javax.swing.JMenu();
         opLCerrar = new javax.swing.JMenuItem();
+        lblNombres = new javax.swing.JMenu();
+        lblApellidos = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +102,12 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         MenuAdmin.add(opLCerrar);
 
         jMenuBar1.add(MenuAdmin);
+
+        lblNombres.setText("jMenu1");
+        jMenuBar1.add(lblNombres);
+
+        lblApellidos.setText("jMenu2");
+        jMenuBar1.add(lblApellidos);
 
         setJMenuBar(jMenuBar1);
 
@@ -165,6 +186,8 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu MenuAdmin;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu lblApellidos;
+    private javax.swing.JMenu lblNombres;
     private javax.swing.JMenu menuCuentas;
     private javax.swing.JMenu menuPropiedades;
     private javax.swing.JMenu menuPropietarios;

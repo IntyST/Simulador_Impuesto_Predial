@@ -50,6 +50,11 @@ public class PersonaModelo {
         this.apellidos = apellidos;
     }
 
+    public PersonaModelo(String nombres, String apellidos) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+    }
+
     
 
     // Getters y Setters

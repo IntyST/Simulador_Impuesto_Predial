@@ -116,17 +116,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblAdmin3" alignment="1" pref="124" max="32767" attributes="0"/>
+                      <Component id="lblAdmin" alignment="1" pref="124" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblAdmin3" alignment="0" pref="41" max="32767" attributes="0"/>
+                      <Component id="lblAdmin" alignment="0" pref="41" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="lblAdmin3">
+                <Component class="javax.swing.JLabel" name="lblAdmin">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -140,7 +140,7 @@
                     <Property name="text" type="java.lang.String" value="   Administrador"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblAdmin3lblAdminMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblAdminlblAdminMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
