@@ -5,16 +5,20 @@
 package DIU.Vista;
 
 import DIU.Controlador.ConsultaPagosControlador;
-import DIU.Controlador.DatosPredialesControlador;
+import DIU.Controlador.PDFConsultaPagos;
 import DIU.Controlador.PersonaControlador;
-import DIU.Controlador.PlantillaPDFConsultaPagosControlador;
 import DIU.Modelo.ConsultaPagosModelo;
 import DIU.Modelo.DatosPredialesModelo;
 import DIU.Modelo.PersonaModelo;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,16 +44,8 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
         this.cedula = cedula;
         lblCedula.setText(cedula);
         lblFecha.setText(fechaString);
+        calcularTotalSubtotales();
     }
-
-    // Declarar una instancia de PlantillaPDFConsultaPagosControlador
-    PlantillaPDFConsultaPagosControlador controladorPDF = new PlantillaPDFConsultaPagosControlador();
-    // Declarar una instancia de ConsultaPagosControlador
-    ConsultaPagosControlador controladorConsulta = new ConsultaPagosControlador();
-    // Declarar una instancia de DatosPredialesControlador
-    DatosPredialesControlador controladorPrediales = new DatosPredialesControlador();
-    // Declarar una instancia de PersonaControlador
-    PersonaControlador controladorPersona = new PersonaControlador();
 
     // Obtener la fecha actual
     Date fechaActual = new Date();
@@ -80,6 +76,24 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
         }
     }
 
+    // Método para calcular la suma de los subtotales
+    private void calcularTotalSubtotales() {
+        ConsultaPagosControlador controlador = new ConsultaPagosControlador();
+        ArrayList<Object[]> datosPago = controlador.consultaPago(cedula);
+        double totalSubtotales = 0;
+
+        // Verificar si se encontraron datos para la cédula
+        if (datosPago != null && !datosPago.isEmpty()) {
+            // Sumar los subtotales
+            for (Object[] fila : datosPago) {
+                totalSubtotales += Double.parseDouble(fila[5].toString());
+            }
+        }
+
+        // Mostrar el total en el JLabel
+        lblTotalRes.setText(String.valueOf(totalSubtotales));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,8 +110,10 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsultaPredios = new javax.swing.JTable();
-        btnCalcularPago = new javax.swing.JButton();
         lblFecha = new javax.swing.JLabel();
+        abrirPdf = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
+        lblTotalRes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +127,7 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
             }
         });
 
-        btnImprimir.setText("Imprimir");
+        btnImprimir.setText("Generar PDF");
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirActionPerformed(evt);
@@ -138,20 +154,28 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblConsultaPredios);
 
-        btnCalcularPago.setText("Calcular Pago");
-
         lblFecha.setText("Fecha");
+
+        abrirPdf.setText("Abrir PDF");
+        abrirPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrirPdfActionPerformed(evt);
+            }
+        });
+
+        lblTotal.setText("El total del valor de todos los predios a pagar es:  $");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(85, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -165,29 +189,41 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
                                 .addComponent(btnVerDatosPrediales, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(331, 331, 331)
-                                .addComponent(btnCalcularPago, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(36, 36, 36))))
+                                .addGap(385, 385, 385)
+                                .addComponent(abrirPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)))
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTotal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTotalRes, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(85, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(13, 13, 13)
+                .addComponent(btnSalir)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
                     .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerDatosPrediales)
                     .addComponent(btnImprimir)
-                    .addComponent(btnSalir)
-                    .addComponent(btnCalcularPago))
+                    .addComponent(abrirPdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotal)
+                    .addComponent(lblTotalRes, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,36 +249,70 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        // Poblar las listas personas, consultas y predios con los datos que quieres incluir en el PDF
-        // Crear una nueva lista de personas y agregar la persona recuperada a la lista
-        controladorPDF.personas = new ArrayList<>();
-        controladorPDF.personas.add(controladorPersona.recuperarDatosPersona(cedula));
+        ConsultaPagosControlador controlador = new ConsultaPagosControlador();
+        ArrayList<Object[]> datosPago = controlador.consultaPago(cedula);
 
-        // Obtener los datos de pago del controlador
-        ArrayList<Object[]> datosPago = controladorConsulta.consultaPago(cedula);
-        controladorPDF.consultas = new ArrayList<>();
-        for (Object[] fila : datosPago) {
-            ConsultaPagosModelo consulta = new ConsultaPagosModelo();
-            // Aquí debes asignar los valores de fila a los campos correspondientes en consulta
-            controladorPDF.consultas.add(consulta);
+        // Verificar si se encontraron datos para la cédula
+        if (datosPago != null && !datosPago.isEmpty()) {
+            // Obtener los datos de la persona
+            PersonaControlador personaControlador = new PersonaControlador();
+            PersonaModelo persona = personaControlador.recuperarDatosPersona(cedula);
+
+            // Verificar si se encontraron datos de la persona
+            if (persona != null) {
+                // Generar el PDF
+                PDFConsultaPagos pdfGenerator = new PDFConsultaPagos();
+                Object[][] datosPagoArray = datosPago.toArray(new Object[datosPago.size()][]);
+                // Crear el mapa de datos de la persona
+                Map<String, String> datosPersona = Map.of(
+                        "Nombres", persona.getNombres(),
+                        "Apellidos", persona.getApellidos(),
+                        "Correo", persona.getCorreo(),
+                        "Teléfono", persona.getTelefono(),
+                        "Fecha de Nacimiento", persona.getFechaNacimiento().toString()
+                );
+                // Llamar al método generarPDF con los parámetros correctos
+                pdfGenerator.generarPDF(cedula, datosPagoArray, datosPersona);
+
+                // Mostrar mensaje de éxito
+                JOptionPane.showMessageDialog(this, "PDF generado con éxito");
+            } else {
+                // Mostrar mensaje de error
+                JOptionPane.showMessageDialog(this, "No se encontraron datos de la persona para la cédula ingresada", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            // Mostrar mensaje de error
+            JOptionPane.showMessageDialog(this, "No se encontraron datos de pago para la cédula ingresada", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        DatosPredialesControlador pC = new DatosPredialesControlador();
-        ArrayList<Object[]> listaFilas = pC.buscarPropiedadesPorCedula(cedula);
-        controladorPDF.predios = new ArrayList<>();
-        for (Object[] fila : listaFilas) {
-            DatosPredialesModelo predio = new DatosPredialesModelo();
-            // Aquí debes asignar los valores de fila a los campos correspondientes en predio
-            controladorPDF.predios.add(predio);
-        }
-
-        // Llamar al método crearPDF cuando se haga clic en el botón btnImprimir
-        controladorPDF.crearPDF("C:\\Users\\Usuario\\OneDrive\\Escritorio\\PDF ConsultaPagos.pdf");
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void abrirPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirPdfActionPerformed
+        try {
+            // Ruta del archivo PDF generado
+            String rutaPDF = "ConsultaPagos_" + cedula + ".pdf";
+
+            // Verificar si Desktop está soportado en el entorno actual
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                File archivoPDF = new File(rutaPDF);
+
+                // Verificar si el archivo existe
+                if (archivoPDF.exists()) {
+                    desktop.open(archivoPDF);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El archivo PDF no existe", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El sistema no soporta la apertura de archivos PDF", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al abrir el archivo PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_abrirPdfActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalcularPago;
+    private javax.swing.JButton abrirPdf;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerDatosPrediales;
@@ -250,6 +320,8 @@ public class VentanaConsulta1 extends javax.swing.JFrame {
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotalRes;
     private javax.swing.JTable tblConsultaPredios;
     // End of variables declaration//GEN-END:variables
 }
