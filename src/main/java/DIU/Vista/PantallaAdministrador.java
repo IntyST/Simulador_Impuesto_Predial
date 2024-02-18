@@ -5,6 +5,7 @@
 package DIU.Vista;
 
 import DIU.Modelo.PersonaModelo;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -29,6 +30,16 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         lblNombres.setText(persona.getNombres());
         lblApellidos.setText(persona.getApellidos());
     }
+    private JInternalFrame ventanaActual = null; // Variable para almacenar la ventana actual
+
+    private void abrirVentana(JInternalFrame nuevaVentana) {
+        if (ventanaActual != null) {
+            ventanaActual.dispose(); // Cierra la ventana actual
+        }
+        escritorio.add(nuevaVentana); // Añade la nueva ventana al escritorio
+        nuevaVentana.show(); // Muestra la nueva ventana
+        ventanaActual = nuevaVentana; // Actualiza la ventana actual
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +57,8 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         menuPropietarios = new javax.swing.JMenu();
         opLPropietarios = new javax.swing.JMenuItem();
         menuCuentas = new javax.swing.JMenu();
+        opLHistorialPersona = new javax.swing.JMenuItem();
+        opLHistorilaDatosPredios = new javax.swing.JMenuItem();
         MenuAdmin = new javax.swing.JMenu();
         opLCerrar = new javax.swing.JMenuItem();
         lblNombres = new javax.swing.JMenu();
@@ -88,7 +101,24 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         jMenuBar1.add(menuPropietarios);
 
-        menuCuentas.setText("Cuentas Administrador");
+        menuCuentas.setText("Gestion historial");
+
+        opLHistorialPersona.setText("Historial Persona");
+        opLHistorialPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opLHistorialPersonaActionPerformed(evt);
+            }
+        });
+        menuCuentas.add(opLHistorialPersona);
+
+        opLHistorilaDatosPredios.setText("Historial Datos Predios");
+        opLHistorilaDatosPredios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opLHistorilaDatosPrediosActionPerformed(evt);
+            }
+        });
+        menuCuentas.add(opLHistorilaDatosPredios);
+
         jMenuBar1.add(menuCuentas);
 
         MenuAdmin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\AdministradorImgn.jpg")); // NOI18N
@@ -130,8 +160,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
     private void opLPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLPropiedadesActionPerformed
         TablaRegistrarPropiedad Propiedades = new TablaRegistrarPropiedad();
-        escritorio.add(Propiedades);
-        Propiedades.show();
+        abrirVentana(Propiedades);
     }//GEN-LAST:event_opLPropiedadesActionPerformed
 
     private void opLCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLCerrarActionPerformed
@@ -142,9 +171,18 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
     private void opLPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLPropietariosActionPerformed
         TablablaRegistrarCiudadanos Propietarios = new TablablaRegistrarCiudadanos();
-        escritorio.add(Propietarios);
-        Propietarios.show();
+        abrirVentana(Propietarios);
     }//GEN-LAST:event_opLPropietariosActionPerformed
+
+    private void opLHistorialPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLHistorialPersonaActionPerformed
+        TablaHistorialPersona hP = new TablaHistorialPersona();
+        abrirVentana(hP);
+    }//GEN-LAST:event_opLHistorialPersonaActionPerformed
+
+    private void opLHistorilaDatosPrediosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opLHistorilaDatosPrediosActionPerformed
+        TablaHistoriaDatosPrediales hDP = new TablaHistoriaDatosPrediales();
+        abrirVentana(hDP);
+    }//GEN-LAST:event_opLHistorilaDatosPrediosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +230,8 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuPropiedades;
     private javax.swing.JMenu menuPropietarios;
     private javax.swing.JMenuItem opLCerrar;
+    private javax.swing.JMenuItem opLHistorialPersona;
+    private javax.swing.JMenuItem opLHistorilaDatosPredios;
     private javax.swing.JMenuItem opLPropiedades;
     private javax.swing.JMenuItem opLPropietarios;
     // End of variables declaration//GEN-END:variables
