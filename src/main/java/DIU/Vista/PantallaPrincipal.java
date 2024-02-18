@@ -130,33 +130,38 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(capa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblImpuestoPredial)
-                            .addComponent(lblGADM)))
+                        .addGap(206, 206, 206)
+                        .addComponent(lblImpuestoPredial))
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(278, 278, 278)
+                        .addGap(192, 192, 192)
+                        .addComponent(lblGADM))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(412, 412, 412)
                         .addComponent(lblTitulo)))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(capa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(20, 20, 20)
                 .addComponent(lblGADM, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblImpuestoPredial)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addComponent(capa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(escritorio)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +178,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAdminlblAdminMouseClicked
 
     private void lblConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultaMouseClicked
-        PantallaConsultaPredios pantallaConsulta = new PantallaConsultaPredios();
-        pantallaConsulta.setVisible(true);
+        Cedula cedula = new Cedula();
+        cedula.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblConsultaMouseClicked
 

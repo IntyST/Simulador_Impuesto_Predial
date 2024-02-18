@@ -10,7 +10,7 @@ import java.awt.Color;
 
 /**
  *
- * @author pablo
+ * @author IntyST
  */
 public class InicioSecion extends javax.swing.JFrame {
 
@@ -48,7 +48,7 @@ public class InicioSecion extends javax.swing.JFrame {
         escritorio.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("INICIAR SECION");
+        jLabel1.setText("INICIAR SESIÓN");
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Logo_GADM_1.jpg")); // NOI18N
 

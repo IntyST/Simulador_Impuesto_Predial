@@ -1,38 +1,55 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package DIU.Vista;
 
 import DIU.Controlador.ConsultaPagosControlador;
-import static DIU.Vista.PantallaConsultaPredios.escritorio;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import java.util.Date;
+import DIU.Controlador.DatosPredialesControlador;
+import DIU.Controlador.PersonaControlador;
+import DIU.Controlador.PlantillaPDFConsultaPagosControlador;
+import DIU.Modelo.ConsultaPagosModelo;
+import DIU.Modelo.DatosPredialesModelo;
+import DIU.Modelo.PersonaModelo;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Usuario
  */
-public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
+public class VentanaConsulta1 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PantallaConsultaCedula
-     */
     public String codCastralPred, fecha_ingreso_pago, fecha_vencimiento_pago, descripcion_pago, direccion, sub_total_pago;
     DefaultTableModel modelo = new DefaultTableModel();
-    // Declarar una variable de instancia para almacenar la cédula
     private String cedula;
 
-    public PantallaConsultaCedula(String cedula) {
+    public List<PersonaModelo> personas;
+    public List<ConsultaPagosModelo> consultas;
+    public List<DatosPredialesModelo> predios;
+
+    /**
+     * Creates new form VentanaConsulta1
+     */
+    public VentanaConsulta1(String cedula) {
         initComponents();
         setModelo();
         this.cedula = cedula;
         lblCedula.setText(cedula);
         lblFecha.setText(fechaString);
     }
+
+    // Declarar una instancia de PlantillaPDFConsultaPagosControlador
+    PlantillaPDFConsultaPagosControlador controladorPDF = new PlantillaPDFConsultaPagosControlador();
+    // Declarar una instancia de ConsultaPagosControlador
+    ConsultaPagosControlador controladorConsulta = new ConsultaPagosControlador();
+    // Declarar una instancia de DatosPredialesControlador
+    DatosPredialesControlador controladorPrediales = new DatosPredialesControlador();
+    // Declarar una instancia de PersonaControlador
+    PersonaControlador controladorPersona = new PersonaControlador();
 
     // Obtener la fecha actual
     Date fechaActual = new Date();
@@ -48,11 +65,12 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         tblConsultaPredios.setModel(modelo);
     }
 
-    public void setDatosPago(int contador, ArrayList<Object[]> datosPago) {
+    public void setDatosPago(ArrayList<Object[]> datosPago) {
         // Limpiar la tabla antes de agregar nuevos datos
         modelo.setRowCount(0);
 
         // Agregar los datos a la tabla
+        int contador = 1; // Inicializar el contador
         for (Object[] fila : datosPago) {
             Object[] nuevaFila = new Object[7];
             nuevaFila[0] = contador;
@@ -81,11 +99,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         btnCalcularPago = new javax.swing.JButton();
         lblFecha = new javax.swing.JLabel();
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
-        setTitle("CONSULTA DE PREDIOS");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblTitulo.setText("Consulta Predios de:");
@@ -137,7 +151,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))
+                        .addContainerGap(85, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -148,24 +162,19 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnVerDatosPrediales, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnVerDatosPrediales, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(366, 366, 366)
-                                .addComponent(btnCalcularPago)
-                                .addGap(169, 169, 169)))
+                                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(331, 331, 331)
+                                .addComponent(btnCalcularPago, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(93, 93, 93)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(36, 36, 36))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(btnSalir)
-                .addGap(18, 18, 18)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
                     .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,6 +183,7 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerDatosPrediales)
                     .addComponent(btnImprimir)
+                    .addComponent(btnSalir)
                     .addComponent(btnCalcularPago))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,35 +193,51 @@ public class PantallaConsultaCedula extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        PantallaConsultaPredios pantallaPred = new PantallaConsultaPredios();
-        pantallaPred.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     private void btnVerDatosPredialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosPredialesActionPerformed
         ConsultaPagosControlador controlador = new ConsultaPagosControlador();
         ArrayList<Object[]> datosPrediales = controlador.verDatosPrediales(cedula);
 
-        // Verificar si se obtuvieron datos
-        if (datosPrediales != null) {
-            PantallaDatosPrediosCiudadano pantallaDatosPredios = new PantallaDatosPrediosCiudadano(cedula);
+        // Crear la nueva ventana y pasar los datos
+        VentanaConsulta2 v2 = new VentanaConsulta2(cedula);
+        v2.setDatos(datosPrediales);
+        v2.setVisible(true);
+        this.dispose();
 
-            // Contador para contar los datos
-            int contador = 1;
 
-            // Pasar los datos a la pantalla y establecer el contador
-            pantallaDatosPredios.setDatos(datosPrediales, contador);
-
-            escritorio.add(pantallaDatosPredios);
-            pantallaDatosPredios.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontraron datos prediales para esta cédula.", "Sin datos", JOptionPane.WARNING_MESSAGE);
-        }
     }//GEN-LAST:event_btnVerDatosPredialesActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        PantallaPrincipal pantallaPrin = new PantallaPrincipal();
+        pantallaPrin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        
+        // Poblar las listas personas, consultas y predios con los datos que quieres incluir en el PDF
+        // Crear una nueva lista de personas y agregar la persona recuperada a la lista
+        controladorPDF.personas = new ArrayList<>();
+        controladorPDF.personas.add(controladorPersona.recuperarDatosPersona(cedula));
+
+        // Obtener los datos de pago del controlador
+        ArrayList<Object[]> datosPago = controladorConsulta.consultaPago(cedula);
+        controladorPDF.consultas = new ArrayList<>();
+        for (Object[] fila : datosPago) {
+            ConsultaPagosModelo consulta = new ConsultaPagosModelo();
+            // Aquí debes asignar los valores de fila a los campos correspondientes en consulta
+            controladorPDF.consultas.add(consulta);
+        }
+
+        DatosPredialesControlador pC = new DatosPredialesControlador();
+        ArrayList<Object[]> listaFilas = pC.buscarPropiedadesPorCedula(cedula);
+        controladorPDF.predios = new ArrayList<>();
+        for (Object[] fila : listaFilas) {
+            DatosPredialesModelo predio = new DatosPredialesModelo();
+            // Aquí debes asignar los valores de fila a los campos correspondientes en predio
+            controladorPDF.predios.add(predio);
+        }
+
+        // Llamar al método crearPDF cuando se haga clic en el botón btnImprimir
+        controladorPDF.crearPDF("C:\\Users\\Usuario\\OneDrive\\Escritorio\\PDF ConsultaPagos.pdf");
     }//GEN-LAST:event_btnImprimirActionPerformed
 
 

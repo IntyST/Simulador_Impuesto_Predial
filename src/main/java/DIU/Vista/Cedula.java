@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author Usuario
  */
-public class PantallaConsultaPredios extends javax.swing.JFrame {
+public class Cedula extends javax.swing.JFrame {
 
     /**
-     * Creates new form PantallaConsultaPredios
+     * Creates new form Cedula
      */
-    public PantallaConsultaPredios() {
+    public Cedula() {
         initComponents();
     }
 
@@ -137,19 +137,15 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
         ConsultaPagosControlador consultaControlador = new ConsultaPagosControlador();
         String cedula = txtCedulaPredio.getText();
 
-        // Obtener los datos de pago del controlador
+        // Llamada al método consultaPago del controlador
         ArrayList<Object[]> datosPago = consultaControlador.consultaPago(cedula);
 
-        // Iniciar el contador
-        int contador = 1;
+        // Crear la nueva ventana y pasar los datos
+        VentanaConsulta1 v1 = new VentanaConsulta1(cedula);
+        v1.setDatosPago(datosPago);
+        v1.setVisible(true);
+        this.dispose();
 
-        // Crear una instancia de PantallaConsultaCedula y pasar los datos
-        PantallaConsultaCedula consultaCedula = new PantallaConsultaCedula(cedula);
-        consultaCedula.setDatosPago(contador, datosPago);
-
-        // Agregar la instancia de PantallaConsultaCedula al escritorio y mostrarla
-        escritorio.add(consultaCedula);
-        consultaCedula.setVisible(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -175,20 +171,20 @@ public class PantallaConsultaPredios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaConsultaPredios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cedula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaConsultaPredios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cedula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaConsultaPredios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cedula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaConsultaPredios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cedula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaConsultaPredios().setVisible(true);
+                new Cedula().setVisible(true);
             }
         });
     }
