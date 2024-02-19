@@ -53,12 +53,14 @@ public class PersonaControlador {
 
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(null, "Persona Creada con Éxito");
-                System.out.println("PERSONA CREADA CON ÉXITO");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Revise los Datos ingresados");
-            System.out.println("REVISE LOS DATOS INGRESADOS");
-            ex.printStackTrace();
+            // Manejar la excepción
+            if (ex.getSQLState().equals("45000")) {
+                JOptionPane.showMessageDialog(null, "La cédula ya está registrada.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al insertar la persona.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -108,7 +110,7 @@ public class PersonaControlador {
                 persona.setTelefono(rs.getString("telefono_res"));
                 persona.setFechaNacimiento(rs.getDate("fechaNacimiento_res"));
             } else {
-                System.out.println("No se encontraron datos para la cédula proporcionada.");
+                JOptionPane.showMessageDialog(null, "No se encontraron datos para la cédula proporcionada.");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR DEL SISTEMA");
@@ -161,7 +163,7 @@ public class PersonaControlador {
             ex.printStackTrace();
         }
     }
-    
+
     public void eliminarPersonaPorCedula(String cedula) {
         try {
             String sql = "CALL sp_EliminarPersonaPorCedula(?)"; // Usar un placeholder '?' para el parámetro
@@ -170,11 +172,11 @@ public class PersonaControlador {
             int resultado = ejecutar.executeUpdate();
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(null, "Persona eliminada exitosamente");
-               
+
                 ejecutar.close();
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron datos de la persona para eliminar");
-               
+
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar la persona: " + e.getMessage());

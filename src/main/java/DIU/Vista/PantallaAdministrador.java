@@ -51,6 +51,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        lblEscudo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPropiedades = new javax.swing.JMenu();
         opLPropiedades = new javax.swing.JMenuItem();
@@ -66,15 +67,27 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        escritorio.setBackground(new java.awt.Color(204, 204, 204));
+
+        lblEscudo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Escudo2.png")); // NOI18N
+
+        escritorio.setLayer(lblEscudo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1499, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(441, 441, 441)
+                .addComponent(lblEscudo, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(467, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblEscudo, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         menuPropiedades.setText("Gestión Propiedades");
@@ -225,6 +238,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu lblApellidos;
+    private javax.swing.JLabel lblEscudo;
     private javax.swing.JMenu lblNombres;
     private javax.swing.JMenu menuCuentas;
     private javax.swing.JMenu menuPropiedades;

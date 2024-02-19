@@ -118,10 +118,12 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
         tblDatos = new javax.swing.JTable();
         jScrollBar1 = new javax.swing.JScrollBar();
 
+        setBackground(new java.awt.Color(102, 204, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("GESTIÓN PROPIEDAD");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -145,22 +147,31 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
             }
         });
 
+        pnlPersona.setBackground(new java.awt.Color(102, 255, 153));
         pnlPersona.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESE LA CÉDULA DE LA PERSONA"));
 
-        lblNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblNombres.setForeground(new java.awt.Color(0, 0, 0));
         lblNombres.setText("Nombres:");
 
-        lblApellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblApellidos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblApellidos.setForeground(new java.awt.Color(0, 0, 0));
         lblApellidos.setText("Apellidos:");
 
-        lblCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblCedula.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblCedula.setForeground(new java.awt.Color(0, 0, 0));
         lblCedula.setText("Cédula:");
 
+        lblEdad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblEdad.setForeground(new java.awt.Color(0, 0, 0));
         lblEdad.setText("Edad:");
 
+        lblTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblTelefono.setText("Télefono:");
 
+        lblCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblCorreo.setForeground(new java.awt.Color(0, 0, 0));
         lblCorreo.setText("Correo electrónico:");
 
         txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -258,6 +269,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        pnlPropiedad.setBackground(new java.awt.Color(204, 255, 204));
         pnlPropiedad.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESE LOS SIGUIENTES CAMPOS DE LA PROPIEDAD"));
 
         lblCodCastral.setText("Codigo castral:");
@@ -346,7 +358,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAreaConstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtAreaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                         .addGroup(pnlPropiedadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -357,7 +369,7 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPropiedadLayout.createSequentialGroup()
-                                .addGap(72, 72, 72)
+                                .addGap(118, 118, 118)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPropiedadLayout.createSequentialGroup()
                         .addComponent(txtValorTerreno, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -421,6 +433,9 @@ public class TablaRegistrarPropiedad extends javax.swing.JInternalFrame {
 
         lblEscudoIbarra.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Escudo_de_Ibarra_(Ecuador).jpg")); // NOI18N
 
+        tblDatos.setBackground(new java.awt.Color(255, 255, 153));
+        tblDatos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblDatos.setForeground(new java.awt.Color(0, 0, 0));
         tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

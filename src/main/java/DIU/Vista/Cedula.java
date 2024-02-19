@@ -6,10 +6,11 @@ package DIU.Vista;
 
 import DIU.Controlador.ConsultaPagosControlador;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author
  */
 public class Cedula extends javax.swing.JFrame {
 
@@ -38,7 +39,10 @@ public class Cedula extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CONSULTA DE PREDIOS"));
+        escritorio.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSULTA DE PREDIOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         btnConsultar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnConsultar.setText("Consultar");
@@ -49,6 +53,7 @@ public class Cedula extends javax.swing.JFrame {
         });
 
         lblNroCedulaPredio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblNroCedulaPredio.setForeground(new java.awt.Color(0, 0, 0));
         lblNroCedulaPredio.setText("Ingrese Nro. Cédula I Nro. Predio:");
 
         txtCedulaPredio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -104,7 +109,7 @@ public class Cedula extends javax.swing.JFrame {
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,10 +125,7 @@ public class Cedula extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,6 +139,18 @@ public class Cedula extends javax.swing.JFrame {
         ConsultaPagosControlador consultaControlador = new ConsultaPagosControlador();
         String cedula = txtCedulaPredio.getText();
 
+        // Verificar si el campo de la cédula está vacío
+        if (cedula.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese el número de cédula.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+            return; // Detener la ejecución del método si la cédula está vacía
+        }
+
+        // Verificar si la cédula tiene exactamente 10 dígitos
+        if (cedula.length() != 10) {
+            JOptionPane.showMessageDialog(this, "La cédula debe tener exactamente 10 dígitos.", "Longitud incorrecta", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución del método si la longitud de la cédula es incorrecta
+        }
+
         // Llamada al método consultaPago del controlador
         ArrayList<Object[]> datosPago = consultaControlador.consultaPago(cedula);
 
@@ -145,7 +159,6 @@ public class Cedula extends javax.swing.JFrame {
         v1.setDatosPago(datosPago);
         v1.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

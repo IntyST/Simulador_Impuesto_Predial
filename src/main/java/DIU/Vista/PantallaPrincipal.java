@@ -32,6 +32,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblAdmin = new javax.swing.JLabel();
         pnlConsulta = new javax.swing.JPanel();
         lblConsulta = new javax.swing.JLabel();
+        pnlConsulta1 = new javax.swing.JPanel();
+        lblCerrarApp = new javax.swing.JLabel();
+        lblAdmIm = new javax.swing.JLabel();
+        lblConsultaim = new javax.swing.JLabel();
+        lblCerraricono = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         lblGADM = new javax.swing.JLabel();
         lblImpuestoPredial = new javax.swing.JLabel();
@@ -45,7 +50,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblAdmin.setBackground(new java.awt.Color(255, 255, 255));
         lblAdmin.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdmin.setText("   Administrador");
+        lblAdmin.setText("ADMINISTRADOR");
         lblAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAdminlblAdminMouseClicked(evt);
@@ -56,11 +61,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pnlAdmin3.setLayout(pnlAdmin3Layout);
         pnlAdmin3Layout.setHorizontalGroup(
             pnlAdmin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdmin3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         pnlAdmin3Layout.setVerticalGroup(
             pnlAdmin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addGroup(pnlAdmin3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         pnlConsulta.setBackground(new java.awt.Color(0, 102, 102));
@@ -68,7 +79,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblConsulta.setBackground(new java.awt.Color(0, 0, 0));
         lblConsulta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblConsulta.setForeground(new java.awt.Color(255, 255, 255));
-        lblConsulta.setText("   Consultar Predio");
+        lblConsulta.setText("  CONSULTAR PREDIO");
         lblConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblConsultaMouseClicked(evt);
@@ -79,34 +90,85 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pnlConsulta.setLayout(pnlConsultaLayout);
         pnlConsultaLayout.setHorizontalGroup(
             pnlConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+            .addComponent(lblConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlConsultaLayout.setVerticalGroup(
             pnlConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlConsultaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
+
+        pnlConsulta1.setBackground(new java.awt.Color(0, 102, 102));
+
+        lblCerrarApp.setBackground(new java.awt.Color(0, 0, 0));
+        lblCerrarApp.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblCerrarApp.setForeground(new java.awt.Color(255, 255, 255));
+        lblCerrarApp.setText("  CERRAR APLICACIÓN");
+        lblCerrarApp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarAppMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlConsulta1Layout = new javax.swing.GroupLayout(pnlConsulta1);
+        pnlConsulta1.setLayout(pnlConsulta1Layout);
+        pnlConsulta1Layout.setHorizontalGroup(
+            pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrarApp)
+                .addContainerGap())
+        );
+        pnlConsulta1Layout.setVerticalGroup(
+            pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrarApp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        lblAdmIm.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\administrador2.png")); // NOI18N
+
+        lblConsultaim.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\icono_pred.png")); // NOI18N
+
+        lblCerraricono.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\iconoCerrar.png")); // NOI18N
 
         javax.swing.GroupLayout capa5Layout = new javax.swing.GroupLayout(capa5);
         capa5.setLayout(capa5Layout);
         capa5Layout.setHorizontalGroup(
             capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(capa5Layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
-                .addGroup(capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(124, 124, 124)
+                .addGroup(capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblCerraricono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblConsultaim, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlConsulta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(pnlConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlAdmin3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(capa5Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(lblAdmIm, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         capa5Layout.setVerticalGroup(
             capa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(capa5Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(35, 35, 35)
+                .addComponent(lblAdmIm, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(153, 153, 153)
+                .addGap(43, 43, 43)
+                .addComponent(lblConsultaim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(lblCerraricono, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         lblTitulo.setBackground(new java.awt.Color(0, 0, 0));
@@ -138,7 +200,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(412, 412, 412)
                         .addComponent(lblTitulo)))
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,10 +211,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblImpuestoPredial)
-                .addContainerGap(8, Short.MAX_VALUE))
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addComponent(capa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(capa5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,6 +242,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         cedula.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblConsultaMouseClicked
+
+    private void lblCerrarAppMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarAppMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblCerrarAppMouseClicked
 
     /**
      * @param args the command line arguments
@@ -224,12 +288,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel capa5;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JLabel lblAdmIm;
     private javax.swing.JLabel lblAdmin;
+    private javax.swing.JLabel lblCerrarApp;
+    private javax.swing.JLabel lblCerraricono;
     private javax.swing.JLabel lblConsulta;
+    private javax.swing.JLabel lblConsultaim;
     private javax.swing.JLabel lblGADM;
     private javax.swing.JLabel lblImpuestoPredial;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlAdmin3;
     private javax.swing.JPanel pnlConsulta;
+    private javax.swing.JPanel pnlConsulta1;
     // End of variables declaration//GEN-END:variables
 }

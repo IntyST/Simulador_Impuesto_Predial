@@ -4,6 +4,7 @@
  */
 package DIU.Vista;
 
+import DIU.Controlador.DatosPredialesControlador;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,11 +22,14 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
      */
     DefaultTableModel modelo = new DefaultTableModel();
 
+    private String cedula;
+
     public VentanaConsulta2(String cedula) {
         initComponents();
         setModelo();
         lblCedula.setText(cedula);
         lblFecha.setText(fechaString);
+        this.cedula = cedula;
     }
 
     // Obtener la fecha actual
@@ -70,13 +74,20 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
         tblDatosPrediales = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         btnMapa = new javax.swing.JButton();
-        btnImprimir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
+        escritorio.setBackground(new java.awt.Color(102, 204, 255));
+
+        tblDatosPrediales.setBackground(new java.awt.Color(255, 255, 153));
         tblDatosPrediales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -90,13 +101,16 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDatosPrediales);
 
-        btnSalir.setText("Volver");
+        btnSalir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\volver.jpg")); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
 
+        btnMapa.setBackground(new java.awt.Color(0, 153, 0));
+        btnMapa.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnMapa.setForeground(new java.awt.Color(0, 0, 0));
         btnMapa.setText("Mapa");
         btnMapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,21 +118,22 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
             }
         });
 
-        btnImprimir.setText("Imprimir");
-        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimirActionPerformed(evt);
-            }
-        });
-
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Datos prediales del ciudadano:");
+
+        lblFecha.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblCedula.setBackground(new java.awt.Color(0, 0, 0));
+        lblCedula.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         escritorio.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(btnSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(btnMapa, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(btnImprimir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(lblFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(lblCedula, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -126,36 +141,41 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addComponent(btnMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                 .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(1230, 1230, 1230)
+                        .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1405, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(btnImprimir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMapa, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMapa)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179))
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,34 +183,22 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(escritorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(35, 35, 35)
-                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(517, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-
-    }//GEN-LAST:event_btnImprimirActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        VentanaConsulta1 v1 = new VentanaConsulta1(fechaString);
+        // Crear una instancia de VentanaConsulta1 con la cédula y mostrarla
+        VentanaConsulta1 v1 = new VentanaConsulta1(cedula);
         v1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -200,14 +208,23 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
         Mapa mapa = new Mapa();
 
         // Generar un número aleatorio para seleccionar una imagen aleatoria
-        int numAleatorio = (int) (Math.random() * 2) + 1; // Suponiendo que tienes dos imágenes
+        int numAleatorio = (int) (Math.random() * 4) + 1; // Ahora tienes cuatro imágenes
 
         // Según el número aleatorio, cargar la imagen correspondiente
         ImageIcon imagenMapa;
-        if (numAleatorio == 1) {
-            imagenMapa = new ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Escudo_de_Ibarra.png"); // Ruta de la primera imagen
-        } else {
-            imagenMapa = new ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Impuesto_predial.jpg"); // Ruta de la segunda imagen
+        switch (numAleatorio) {
+            case 1:
+                imagenMapa = new ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\map1.png");
+                break;
+            case 2:
+                imagenMapa = new ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\map2.png");
+                break;
+            case 3:
+                imagenMapa = new ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\map3.png");
+                break;
+            default:
+                imagenMapa = new ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\map4.png");
+                break;
         }
 
         // Establecer la imagen en la instancia de Mapa
@@ -215,8 +232,33 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
 
         escritorio.add(mapa);
         mapa.setVisible(true);
-        
+
     }//GEN-LAST:event_btnMapaActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        limpiarTabla();
+        cargarTabla();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void limpiarTabla() {
+        int a = modelo.getRowCount() - 1;  // Índices van de 0 a n-1
+        // System.out.println("Tabla " + a);   // Para mostrar por consola el resultado
+        for (int i = a; i >= 0; i--) {
+            // System.out.println("i " + i);    // Para mostrar por consola el resultado
+            modelo.removeRow(i);
+        }
+    }
+
+    private void cargarTabla() {
+        DatosPredialesControlador pC = new DatosPredialesControlador();
+        ArrayList<Object[]> lista = pC.obtenerDatosPrediales();
+
+        for (Object[] filas : lista) {
+            modelo.addRow(filas);
+        }
+
+        tblDatosPrediales.setModel(modelo);
+    }
 
     /**
      * @param args the command line arguments
@@ -254,7 +296,6 @@ public class VentanaConsulta2 extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnMapa;
     private javax.swing.JButton btnSalir;
     private javax.swing.JDesktopPane escritorio;

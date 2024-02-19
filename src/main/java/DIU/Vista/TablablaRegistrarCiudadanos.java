@@ -87,7 +87,9 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
         lblfechaN = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPersona = new javax.swing.JTable();
+        lblImag = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -116,6 +118,7 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESE LOS SIGUIENTES DATOS"));
 
         btnLimpiar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -268,6 +271,8 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
+        tblPersona.setBackground(new java.awt.Color(255, 255, 153));
+        tblPersona.setForeground(new java.awt.Color(0, 0, 0));
         tblPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -286,25 +291,34 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblPersona);
 
+        lblImag.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Escudo_de_Ibarra.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblImag, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(lblImag)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
         );
@@ -323,17 +337,32 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
         String telefono = txtTelefono.getText();
         Date fechaNacimiento = txtFecha.getDate();
 
-        // Crear una instancia de PersonaModelo con los datos obtenidos
-        PersonaModelo nuevaPersona = new PersonaModelo(cedula, nombres, apellidos, correo, telefono, fechaNacimiento);
+        // Verificar si alguno de los campos está vacío
+        if (nombres.isEmpty() || apellidos.isEmpty() || cedula.isEmpty() || correo.isEmpty() || telefono.isEmpty() || fechaNacimiento == null) {
+            // Mostrar un mensaje de advertencia
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese todos los campos para registrar a la persona.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+        } else if (cedula.length() != 10) {
+            // Mostrar un mensaje de error si la cédula no tiene 10 dígitos
+            JOptionPane.showMessageDialog(this, "La cédula debe tener exactamente 10 dígitos.", "Error en la cédula", JOptionPane.ERROR_MESSAGE);
+        } else if (telefono.length() != 10) {
+            // Mostrar un mensaje de error si el número de teléfono no tiene 10 dígitos
+            JOptionPane.showMessageDialog(this, "El número de teléfono debe tener exactamente 10 dígitos.", "Error en el teléfono", JOptionPane.ERROR_MESSAGE);
+        } else if (!correo.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$")) {
+            // Mostrar un mensaje de error si el correo no termina con "@gmail.com"
+            JOptionPane.showMessageDialog(this, "El correo electrónico debe ser de dominio @gmail.com.", "Error en el correo electrónico", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // Crear una instancia de PersonaModelo con los datos obtenidos
+            PersonaModelo nuevaPersona = new PersonaModelo(cedula, nombres, apellidos, correo, telefono, fechaNacimiento);
 
-        // Crear una instancia de PersonaControlador
-        PersonaControlador controlador = new PersonaControlador();
+            // Crear una instancia de PersonaControlador
+            PersonaControlador controlador = new PersonaControlador();
 
-        // Llamar al método crearPersona
-        controlador.crearPersona(nuevaPersona);
-        setDatos();
-        limpiarTabla();
-        cargarTabla();
+            // Llamar al método crearPersona
+            controlador.crearPersona(nuevaPersona);
+            setDatos();
+            limpiarTabla();
+            cargarTabla();
+        }
 
     }//GEN-LAST:event_btnCrearActionPerformed
 
@@ -465,6 +494,7 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblImag;
     private javax.swing.JLabel lblNombres;
     private javax.swing.JLabel lblfechaN;
     private javax.swing.JLabel lbltelefono;

@@ -39,7 +39,7 @@ public class DatosPredialesControlador {
 
     public void crearDatosPredialesYPagos(String cedula, DatosPredialesModelo datosPrediales, ConsultaPagosModelo consultaPagos) {
         try {
-            
+
             String SQL = "CALL sp_InsertarDatosPredialesYPagos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ejecutar = conectar.prepareStatement(SQL);
 
@@ -108,11 +108,19 @@ public class DatosPredialesControlador {
     public ArrayList<Object[]> buscarPropiedadesPorCedula(String cedula) {
         ArrayList<Object[]> listaObject = new ArrayList<>();
         try {
+            // Verificar si la cédula está vacía
+            if (cedula.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese la cédula.", "Cédula vacía", JOptionPane.WARNING_MESSAGE);
+                return null;
+            }
+
             String sql = "CALL sp_BuscarPropiedadesPorCedula(?)";
             ejecutar = conectar.prepareCall(sql);
             ejecutar.setString(1, cedula);
             resultado = ejecutar.executeQuery();
             int cont = 1;
+            boolean datosEncontrados = false; // Variable para verificar si se encontraron datos
+
             while (resultado.next()) {
                 Object[] obPropiedad = new Object[12]; // Ajustar el tamaño del array a 12
                 obPropiedad[0] = cont; // Número de fila
@@ -129,8 +137,16 @@ public class DatosPredialesControlador {
                 obPropiedad[11] = resultado.getDouble("VALOR_COMERCIAL_PRED");
                 listaObject.add(obPropiedad);
                 cont++;
+                datosEncontrados = true; // Se encontraron datos
             }
+
             ejecutar.close();
+
+            // Si no se encontraron datos, mostrar un mensaje
+            if (!datosEncontrados) {
+                JOptionPane.showMessageDialog(null, "No se encontraron datos prediales para la cédula especificada.", "Sin datos", JOptionPane.WARNING_MESSAGE);
+            }
+
             return listaObject;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERROR SQL: " + e.getMessage());
