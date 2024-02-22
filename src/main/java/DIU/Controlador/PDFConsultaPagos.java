@@ -55,9 +55,10 @@ public class PDFConsultaPagos {
                 document.add(new Paragraph(entry.getKey() + ": " + entry.getValue()));
             }
             document.add(new Paragraph("\n"));
-
+            document.add(new Paragraph("--------------------------------------------------------------------------------------------------------------------------"));
+            
             // Agregar los datos de pago
-            document.add(new Paragraph("Consulta de pagos para la cédula: " + cedula));
+            document.add(new Paragraph("Consulta de pagos de la cédula: " + cedula));
             document.add(new Paragraph("\n"));
 
             double totalPredios = 0; // Inicializar el total de todos los predios
@@ -72,7 +73,8 @@ public class PDFConsultaPagos {
 
                 totalPredios += Double.parseDouble(fila[5].toString()); // Sumar al total de todos los predios
             }
-
+            document.add(new Paragraph("------------------------------------------------------------------------------------------------------------------------------"));
+            document.add(new Paragraph("\n"));
             // Agregar el total de todos los predios al final del PDF
             document.add(new Paragraph("Total a pagar por todos los predios: " + totalPredios));
 
