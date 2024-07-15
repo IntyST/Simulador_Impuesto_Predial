@@ -272,7 +272,6 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
         );
 
         tblPersona.setBackground(new java.awt.Color(255, 255, 153));
-        tblPersona.setForeground(new java.awt.Color(0, 0, 0));
         tblPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -290,8 +289,6 @@ public class TablablaRegistrarCiudadanos extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblPersona);
-
-        lblImag.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Documentos\\NetBeansProjects\\SimuladorImpuestoPredial\\src\\main\\resources\\Imgs\\Escudo_de_Ibarra.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
